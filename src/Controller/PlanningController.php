@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlanningController extends AbstractController
 {
     /**
-     * @Route("/", name="planning")
+     * @Route("/yy", name="planning")
      */
     public function index(): Response
     {
@@ -26,7 +26,7 @@ class PlanningController extends AbstractController
     }
 
     /**
-     * @Route("/planning", name="AjouterPlanning")
+     * @Route("/", name="AjouterPlanning")
      */
     public function AjouterPlan(Request $request) {
         $plan = new Planning();
