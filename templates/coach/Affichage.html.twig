@@ -1,19 +1,49 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Affichage coach!{% endblock %}
-{% block body %}
-<table>
-    <tr>
-    <th> Id</th> 
-    <th> nom</th>
-    </tr>
 
-    <tr{% for c in coach %}>
-        <td> {{ c.id }}</td>
-        <td> {{ c.nom }}</td>
-   </tr  {%endfor%}>
-   
-</table>
+{% block body %}
+
+ <div class="col-lg-20 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Liste Coach</h4>
+                <div class="table-responsive pt-3">
+                    <table class="table table-striped">
+                    
+    <thead>
+        <tr>
+        <th> Id</th> 
+        <th> nom</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th> Id</th> 
+            <th> nom</th>
+            <th> </th>
+            </tr>
+    </tfoot>
+
+    <tbody>
+
+        <tr{% for c in coach %}>
+            <td> {{ c.id }}</td>
+            <td> {{ c.nom }}</td>
+            <td> <a href="{{ path('delete',{'id' :c.id}) }}" class="btn btn-danger">supprimer</a></td>
+            <td> <a href="{{ path('update',{'id' :c.id}) }}" class="btn btn-warning">Modifier</a></td>
+
+        </tr  {%endfor%}>
+   </tbody>
+ </tbody>
+                    </table>
+                </div>
+                <a href="{{ path('add') }}" class="get-started-btn">Ajouter un Coach</a>
+            </div>
+            
+        </div>
+        
+    </div>
+
 
 {% endblock %}
