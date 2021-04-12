@@ -26,7 +26,7 @@ class PlanningController extends AbstractController
     }
 
     /**
-     * @Route("/", name="AjouterPlanning")
+     * @Route("/formPlan", name="AjouterPlanning")
      */
     public function AjouterPlan(Request $request) {
         $plan = new Planning();
