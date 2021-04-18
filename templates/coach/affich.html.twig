@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage coach!{% endblock %}
+{% block body %}
+<div class="container">
+<h2 class="text-center">Affichage des Coachs</h2>
+<div class="row flex">
+{% for c in coach %}
+<div class="col-3">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title"><a href="{{ path('show',{'id' :c.id}) }}">{{ c.nom }} {{ c.prenom}} </a></h5>
+<p class="card-text"> Email:{{c.email}}</p>
+<div class="test-primary" style="font-weight: bold; font-size: 2rem;">{{c.tel }}</div>
+</div>
+</div>
+</div>
+{%endfor%}
+</div>
+</div>
+{% endblock %}

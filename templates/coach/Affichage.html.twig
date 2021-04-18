@@ -1,7 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Affichage coach!{% endblock %}
+{% block javascripts %}
+           
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+$( document ).ready(function() {
+        $("#search").keyup(function(e){
+/* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+          var value = $(this).val();
+/* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+             $.ajax({
+/* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('searchCoach') }}",
+/* La méthode utilisée pour transférer les données est GET */
+                type : 'GET', 
+/*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */                
+                data: {
+                        'searchValue' : value
+                    },
+/*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+                  if(retour){
+  			$('#t tbody#search').empty();
+  			$.each(JSON.parse(retour), function(i, obj) {
+  			$('#t tbody#all').hide();
+  			$('#t tbody#search').append
+              ('<tr><td> '+obj.id+'  </td><td>    '+obj.nom+'  </td><td>'+obj.prenom+'</td><td>    '+obj.email+' <tr><td> '+obj.tel+'<tr><td> '+obj.adresse+' </td><td><a href="update/'+obj.id+'">modifier</a> </br><a href="delete/'+obj.id+'">supprimer</a></td></tr>');
+});
+                  }
+                  else
+                  {
+   $('#t tbody#all').show();
+   $('#t tbody#search').empty();
+   $('#t tbody#search').fadeIn('fast');
+                     }
+ },
+        });
+        return false;
+        });
+    });
+        </script>
 
+        {% endblock %}
 {% block body %}
 
  <div class="col-lg-20 grid-margin stretch-card">
@@ -9,31 +51,53 @@
             <div class="card-body">
                 <h4 class="card-title">Liste Coach</h4>
                 <div class="table-responsive pt-3">
+                {% for message in app.flashes('success')%}
+                <div class="alert alert-success">
+                {{message}}
+                </div> 
+                {% endfor %}
+                <input type="text" id="search" class="form-control" placeholder="Search">
+                  
                     <table class="table table-striped">
                     
     <thead>
         <tr>
-        <th> Id</th> 
-        <th> nom</th>
-        </tr>
+            <th>Id</th> 
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Telephone </th>    
+            <th>Adresse </th>
+            <th> </th>
+            </tr>
     </thead>
     <tfoot>
         <tr>
-            <th> Id</th> 
-            <th> nom</th>
+            <th>Id</th> 
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Telephone </th>    
+            <th>Adresse </th>
             <th> </th>
             </tr>
     </tfoot>
 
-    <tbody>
-
+    <tbody> 
+        
         <tr{% for c in coach %}>
             <td> {{ c.id }}</td>
             <td> {{ c.nom }}</td>
-            <td> <a href="{{ path('delete',{'id' :c.id}) }}" class="btn btn-danger">supprimer</a></td>
-            <td> <a href="{{ path('update',{'id' :c.id}) }}" class="btn btn-warning">Modifier</a></td>
+            <td> {{ c.prenom}} </td>
+            <td> {{ c.email}} </td>
+            <td> {{ c.tel}} </td>
+            <td> {{ c.adresse}} </td>
+
+            <td> <a href="{{ path('delete',{'id' :c.id}) }}" class="btn btn-danger"  onclick="return confirm('Etes-vous vraiement sur de supprimer?')">supprimer</a>
+             <a href="{{ path('update',{'id' :c.id}) }}" class="btn btn-warning" >Modifier</a></td>
 
         </tr  {%endfor%}>
+        <tbody  id="search">
    </tbody>
  </tbody>
                     </table>

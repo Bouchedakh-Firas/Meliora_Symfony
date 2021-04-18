@@ -10,30 +10,48 @@ use App\Entity\Coach;
 use App\Form\CoachType;
 use App\Repository\CoachRepository;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+use Ob\HighchartsBundle\Highcharts\Highchart;
 
 class CoachController extends AbstractController
 {
     /**
-     * @Route("/coach", name="coach")
+     * @Route("/admin ",name="Affichage")
+     * 
      */
     public function index(): Response
     {
-        return $this->render('coach/index.html.twig', [
-            'controller_name' => 'CoachController',
+        $repo = $this->getDoctrine()->getManager()->getRepository(Coach::class);
+        $Co = $repo->findAll();
+        return $this->render('coach/Affichage.html.twig', [
+            'coach' => $Co
         ]);
     }
     /**
-     * @Route("/Affichage",name="Affichage")
+     * @Route("/", name="coach")
      */
     public function Affichage()
     {
         $repo = $this->getDoctrine()->getManager()->getRepository(Coach::class);
         $Co = $repo->findAll();
 
-        return $this->render('coach/Affichage.html.twig', [
+        return $this->render('coach/affich.html.twig', [
             'coach' => $Co
         ]);
     }
+    /**
+     * @Route("/admin/{id}", name="show")
+     */
+    public function show($id,CoachRepository $repo)
+    {
+        $propri=$coach = $repo->find($id);
+        return $this->render('Coach/show.html.twig', [
+            'coach' => $propri
+        ]);
+    }
+    
+    
     /**
      * @Route("/add",name="add")
      */
@@ -47,33 +65,35 @@ class CoachController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($coach);
             $em->flush();
+            $this->addFlash('success','le Coach a été bien ajouter   !');
             return $this->redirectToRoute('Affichage');
         }
         return $this->render('Coach/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
-   
+
     /**
      * @Route("/update/{id}",name="update")
      */
     public function update(Request $request, $id, CoachRepository $repo)
     {
         $coach = $repo->find($id);
-        $editForm = $this->createForm(CoachType::class, $coach);
-        $editForm->add('Update', SubmitType::class);
-        $editForm->handleRequest($request);
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        $form = $this->createForm(CoachType::class, $coach);
+        $form->add('modifier', SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($coach);
             $em->flush();
+            $this->addFlash('success','le Coach a été bien modifier !');
             return $this->redirectToRoute('Affichage');
         }
-        return $this->render('Coach/update.html.twig', [
-            'form' => $editForm->createView()
+        return $this->render('Coach/add.html.twig', [
+            'form' => $form->createView()
         ]);
     }
-     /**
+
+    /**
      * @Route("/delete/{id}",name="delete")
      */
     function delete($id, CoachRepository $repo)
@@ -82,6 +102,21 @@ class CoachController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($coach);
         $em->flush();
+        $this->addFlash('success','le Coach a été bien supprimer !');
         return $this->redirectToRoute('Affichage');
     }
+    /**
+     * @Route("/searchCoach ", name="searchCoach")
+     */
+    public function searchCoach(Request $request, NormalizerInterface $Normalizer, CoachRepository $repo)
+    {
+
+        $requestString = $request->get('searchValue');
+        $coachs = $repo->findCoachByNOM($requestString);
+        
+        return $this->render('coach/Affichage.html.twig', [
+            'coach' => $coachs
+        ]);
+    }
+   
 }

@@ -18,6 +18,13 @@ class CoachRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Coach::class);
     }
+    public function findCoachByNOM($nom){
+        return $this->createQueryBuilder('c')
+            ->where('c.nom LIKE :nom')
+            ->setParameter('nom', '%'.$nom.'%')
+            ->getQuery()
+            ->getResult();
+    }
 
     // /**
     //  * @return Coach[] Returns an array of Coach objects

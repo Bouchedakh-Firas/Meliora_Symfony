@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CoachType extends AbstractType
 {
@@ -32,11 +34,11 @@ class CoachType extends AbstractType
                     'placeholder'=>'Foulen.benFoulen@yahoo.fr'
                 ]
             ))
-            ->add('password')
+            
             ->add('tel')
-            ->add('adresse')
+            ->add('adresse',TextareaType::class)
             ->add('image')
-            ->add('rating')
+            
             ->add('date',DateType::class, array(
                 'widget'=>'single_text',
                 'format'=>'yyyy-MM-dd'
