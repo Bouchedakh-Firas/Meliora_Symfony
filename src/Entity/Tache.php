@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,7 +54,7 @@ class Tache
     /**
      * @var int
      *
-     * @ORM\Column(name="idnonnull", type="integer", nullable=false)
+     * @ORM\Column(name="idnonnull", type="integer", nullable=true)
      */
     private $idnonnull;
 
@@ -89,6 +91,17 @@ class Tache
      * })
      */
     private $idE;
+
+    
+    /**
+     * @ORM\ManyToMany(targetEntity=Video::class, inversedBy="taches")
+     */
+    private $Videos;
+
+    public function __construct()
+    {
+        $this->Videos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -199,6 +212,30 @@ class Tache
     public function setIdE(?EBooks $idE): self
     {
         $this->idE = $idE;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->Videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->Videos->contains($video)) {
+            $this->Videos[] = $video;
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        $this->Videos->removeElement($video);
 
         return $this;
     }
