@@ -361,13 +361,7 @@ class PlanningController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Planning::class);
         $requestString=$request->get('searchValue');
-       // $students = $repository->findBy(array('nomP' => $requestString));
-       $students = $repository->createQueryBuilder('a')
-        // Filter by some parameter if you want
-        ->where('a.nomP LIKE :nsc')
-            ->setParameter('nsc', '%'.$requestString.'%')
-            ->getQuery()
-            ->getResult();
+        $students = $repository->findBy(array('nomP' => $requestString));
         $jsonContent = $Normalizer->normalize($students, 'json',['groups'=>'students:read']);
         $retour=json_encode($jsonContent);
         return new Response($retour);
