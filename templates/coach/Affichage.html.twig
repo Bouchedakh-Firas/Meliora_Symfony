@@ -26,8 +26,7 @@ $( document ).ready(function() {
   			$('#t tbody#search').empty();
   			$.each(JSON.parse(retour), function(i, obj) {
   			$('#t tbody#all').hide();
-  			$('#t tbody#search').append
-              ('<tr><td> '+obj.id+'  </td><td>    '+obj.nom+'  </td><td>'+obj.prenom+'</td><td>    '+obj.email+' <tr><td> '+obj.tel+'<tr><td> '+obj.adresse+' </td><td><a href="update/'+obj.id+'">modifier</a> </br><a href="delete/'+obj.id+'">supprimer</a></td></tr>');
+  			$('#t tbody#search').append('<tr><td>'+obj.id+'</td><td>'+obj.nom+'</td><td>'+obj.prenom+'</td><td>'+obj.email+'</td><td>'+obj.tel+'</td><td> '+obj.adresse+'</td><td><a href="update/'+obj.id+'" class="btn btn-warning" >modifier</a> <a href="delete/'+obj.id+'" class="btn btn-danger"   >supprimer</a></td></tr>');
 });
                   }
                   else
@@ -46,10 +45,25 @@ $( document ).ready(function() {
         {% endblock %}
 {% block body %}
 
+
  <div class="col-lg-20 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Liste Coach</h4>
+                <div class="d-flex justify-content-end mb-2">
+                <form role="search" id="nav-search-form" method="post" action="{{ path('tri') }}">
+
+
+    <div class="btn-toolbar" role="toolbar" aria-label="Programmatic control">
+        <div class="btn-group btn-group-sm" aria-label="Set Select2 option">
+
+            <button class="js-programmatic-set-val btn btn-outline-primary mr-1 mb-1" >
+                Sort by Date 
+            </button>
+        </div>
+    </div>
+</form>
+</div>
                 <div class="table-responsive pt-3">
                 {% for message in app.flashes('success')%}
                 <div class="alert alert-success">
@@ -58,7 +72,7 @@ $( document ).ready(function() {
                 {% endfor %}
                 <input type="text" id="search" class="form-control" placeholder="Search">
                   
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="t">
                     
     <thead>
         <tr>
@@ -83,7 +97,7 @@ $( document ).ready(function() {
             </tr>
     </tfoot>
 
-    <tbody> 
+    <tbody id="all"> 
         
         <tr{% for c in coach %}>
             <td> {{ c.id }}</td>

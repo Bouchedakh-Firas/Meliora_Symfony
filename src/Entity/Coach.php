@@ -66,7 +66,7 @@ class Coach
      *
      * @ORM\Column(name="password", type="string", length=255)
      * @Groups("coachs:read")
-     * @Assert\Blank
+     *
      * 
      */
     private $password;
@@ -93,6 +93,7 @@ class Coach
      *
      * @ORM\Column(name="image", type="string", length=255)
      * @Groups("coachs:read")
+     * 
      */
     private $image;
 

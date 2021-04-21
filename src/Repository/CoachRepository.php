@@ -25,6 +25,16 @@ class CoachRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function TriAction()
+    {
+       
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.date', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
 
     // /**
     //  * @return Coach[] Returns an array of Coach objects
