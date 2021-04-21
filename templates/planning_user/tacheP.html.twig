@@ -1,4 +1,4 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base.html.twig' %}
 
 
 {% block title %}Ajouter tache planning!{% endblock %}
@@ -67,7 +67,7 @@
 		<td>{{ c.auteur }}</td>
 		<td>{{ c.text }}</td>
 		<td><p>{{ c.genre }}</p></td>
-		<td><a  class="btn btn-success text-white"  data-toggle="modal" data-target="#myModal" href="{{ path ('ContentAdd',{'id': id,'idc' : c.id,'type': "citaion" })}}">ajouter</a></td>
+		<td><a  class="btn btn-success text-white"  data-toggle="modal" data-target="#myModal" href="{{ path ('ContentAddU',{'id': id,'idc' : c.id,'type': "citaion" })}}">ajouter</a></td>
 	</tr>
         
     {% endfor %}
@@ -92,7 +92,7 @@
   <tr>
   <td>{{ v.titre }}</td>
    <td>{{ v.genre }}</td>
-		<td><a href="{{ path ('ContentAdd',{'id': id,'idc' : v.idV,'type': "video" })}}" class="btn btn-success text-white" href="#">ajouter</a></td>
+		<td><a href="{{ path ('ContentAddU',{'id': id,'idc' : v.idV,'type': "video" })}}" class="btn btn-success text-white" href="#">ajouter</a></td>
       </tr>
 
     {% endfor %}
@@ -118,7 +118,7 @@
   <tr>
   <td><p>{{ m.genre }}</p></td>
   <td><p>{{ m.artiste }}</p></td>
-		<td><a href="{{ path ('ContentAdd',{'id': id,'idc':m.nombre,'type': "musique" })}}" class="btn btn-success text-white">ajouter</a></td>
+		<td><a href="{{ path ('ContentAddU',{'id': id,'idc':m.nombre,'type': "musique" })}}" class="btn btn-success text-white">ajouter</a></td>
        </tr>
     {% endfor %}</tbody>
 </table>
@@ -141,7 +141,7 @@
     <td><p>{{ e.auteur }}</p></td>
     <td><p>{{ e.genre }}</p></td>
   <td><p>{{ e.titre }}</p></td>
-		<td><a href="{{ path ('ContentAdd',{'id': id,'idc' : e.id,'type': "ebook" })}}" class="btn btn-success text-white" >ajouter</a></td>
+		<td><a href="{{ path ('ContentAddU',{'id': id,'idc' : e.id,'type': "ebook" })}}" class="btn btn-success text-white" >ajouter</a></td>
         </tr>
     {% endfor %}
   </div>

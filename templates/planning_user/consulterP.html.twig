@@ -1,4 +1,4 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block title %}Consulter Planning!{% endblock %}
@@ -14,7 +14,7 @@
    
     
     <div class="table-responsive">
-    <a type="button" class="btn btn-success text-white" href="{{ path ('ContentList', {'id' :id,})}}" >Done</a>
+    <a type="button" class="btn btn-success text-white" href="{{ path ('ContentListU', {'id' :id,})}}" >Done</a>
   <table class="table table-striped table-success border-light">
     <thead>
     
@@ -36,7 +36,7 @@
         <td>{{ e.date|date('Y-m-d\\TH:i:sP') }}</td>
         <td>{{ e.etatDuTache }}</td>
          <td><a type="button" class="btn btn-success text-white" href="{{ path ('DoneTacheP', {'id' :id,'idt':e.id})}}" >Done</a></td>
-          <td><a type="button" class="btn btn-danger text-white" href="{{ path ('supprimerTacheP', {'id' :id,'idt':e.id})}}">Supprimer</a></td>
+          <td><a type="button" class="btn btn-danger text-white" href="{{ path ('supprimerTachePU', {'id' :id,'idt':e.id})}}">Supprimer</a></td>
       </tr>
        {% endfor %}
       
