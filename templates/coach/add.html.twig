@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<div class="container mt-4">
+<h1>Modifier les informations</h1>
+{{ form_start(form)}}
+<div class="row">
+<div class="col-md-6">{{ form_row(form.nom)}}</div>
+<div class="col-md-6">{{ form_row(form.prenom)}}</div>
+</div>
+<div class="col-md-14">{{ form_row(form.email)}}</div>
+<div class="row">
+<div class="col-md-4">{{ form_row(form.tel)}}</div>
+<div class="col-md-8">{{ form_row(form.adresse)}}</div>
+</div>
+{{ form_widget(form, {'attr': {'novalidate': 'novalidate'}})}}
+
+</div>
+{{ form_end(form)}}
+{% endblock %}
