@@ -14,16 +14,18 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="vendor/aos/aos.css" rel="stylesheet">
+  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <link href="{{ asset('vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{ asset('vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('vendor/aos/aos.css')}}" rel="stylesheet">
+
 
   <!-- Template Main CSS File <--></-->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
@@ -39,17 +41,15 @@
 
       
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="index.html" class="logo mr-auto"><img src="img/logoMeliora.png" alt="" class="img-fluid"></a>
+
+      <a href="index.html" class="logo mr-auto"><img src="{{ asset('img/logoMeliora.png')}}" alt="" class="img-fluid"></a>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Accueil</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="courses.html">Nos Service</a></li>
-          <li><a href="trainers.html">Trainers</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
+          <li class="active"><a href="/admin">Coach</a></li>
+        
           <li class="drop-down"><a href="">Drop Down</a>
+
             <ul>
               <li><a href="#">Drop Down 1</a></li>
               <li class="drop-down"><a href="#">Deep Drop Down</a>
@@ -106,7 +106,10 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
+
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              {#
+
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
@@ -117,8 +120,11 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
+
+            
               <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+
               <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
