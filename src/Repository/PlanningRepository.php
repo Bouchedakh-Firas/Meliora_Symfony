@@ -14,23 +14,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PlanningRepository extends ServiceEntityRepository
 {
-
-    /**
-      * @return Planning[] Returns an array of Planning objects
-      */
-    public function findByNom($nsc){
-        return $this->createQueryBuilder('planning')
-            ->where('planning.nomP LIKE :nsc')
-            ->setParameter('nsc', '%'.$nsc.'%')
-            ->getQuery()
-            ->getResult();
-    }
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Planning::class);
     }
-
-    
 
     // /**
     //  * @return Planning[] Returns an array of Planning objects
