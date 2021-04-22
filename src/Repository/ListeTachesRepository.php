@@ -14,14 +14,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ListeTachesRepository extends ServiceEntityRepository
 {
-    
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ListeTaches::class);
     }
-   
-    
+
     // /**
     //  * @return ListeTaches[] Returns an array of ListeTaches objects
     //  */

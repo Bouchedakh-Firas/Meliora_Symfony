@@ -2,13 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Citations;
-use App\Entity\EBooks;
-use App\Entity\Musique;
 use App\Entity\Tache;
-use App\Entity\Video;
 use Doctrine\DBAL\Types\DateTimeType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType as TypeDateTimeType;
