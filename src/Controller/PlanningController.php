@@ -28,7 +28,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class PlanningController extends AbstractController
 {
     /**
-
      * @Route("/yy", name="planning")
      */
     public function index(): Response
