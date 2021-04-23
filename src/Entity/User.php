@@ -2,98 +2,90 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
- * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=180, nullable=false)
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=180, nullable=false)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
-     */
-    private $password;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="roles", type="array", length=0, nullable=false)
+     * @ORM\Column(type="string", name="username" , length=180)
      */
-    private $roles;
+    private $name;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="prenom", type="string", length=200, nullable=true)
-     */
-    private $prenom;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="dateNai", type="date", nullable=true)
-     */
-    private $datenai;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="adresse", type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=180)
      */
     private $adresse;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="tel", type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=180)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="date",length=180)
+     */
+    private $dateNai;
+
+    /**
+     * @ORM\Column(type="string",length=255)
      */
     private $tel;
+
+
+    /**
+     * @Assert\Length(max=250)
+     */
+    private $plainPassword;
+
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
-    {
-        return $this->username;
+
+    function getIsActive() {
+        return $this->isActive;
     }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
+    function setIsActive($isActive) {
+        $this->isActive = $isActive;
     }
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -106,21 +98,30 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->password;
+        return (string) $this->email;
     }
 
-    public function setPassword(string $password): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->password = $password;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
 
-        return $this;
+        return array_unique($roles);
     }
 
-    public function getRoles(): ?array
-    {
-        return $this->roles;
+    function addRole($role) {
+        $this->roles[] = $role;
     }
 
     public function setRoles(array $roles): self
@@ -130,53 +131,128 @@ class User
         return $this;
     }
 
-    public function getPrenom(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->prenom;
+        return (string) $this->password;
     }
 
-    public function setPrenom(?string $prenom): self
+    public function setPassword(string $password): self
     {
-        $this->prenom = $prenom;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getDatenai(): ?\DateTimeInterface
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
     {
-        return $this->datenai;
+        return null;
     }
 
-    public function setDatenai(?\DateTimeInterface $datenai): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->datenai = $datenai;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+    function getPlainPassword() {
+        return $this->plainPassword;
     }
 
-    public function getAdresse(): ?string
+    function setPlainPassword($plainPassword) {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdresse()
     {
         return $this->adresse;
     }
 
-    public function setAdresse(?string $adresse): self
+    /**
+     * @param mixed $adresse
+     */
+    public function setAdresse($adresse): void
     {
         $this->adresse = $adresse;
-
-        return $this;
     }
 
-    public function getTel(): ?string
+    /**
+     * @return mixed
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * @param mixed $prenom
+     */
+    public function setPrenom($prenom): void
+    {
+        $this->prenom = $prenom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateNai()
+    {
+        return $this->dateNai;
+    }
+
+    /**
+     * @param mixed $dateNai
+     */
+    public function setDateNai($dateNai): void
+    {
+        $this->dateNai = $dateNai;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTel()
     {
         return $this->tel;
     }
 
-    public function setTel(?string $tel): self
+    /**
+     * @param mixed $tel
+     */
+    public function setTel($tel): void
     {
         $this->tel = $tel;
-
-        return $this;
     }
+
 
 
 }
