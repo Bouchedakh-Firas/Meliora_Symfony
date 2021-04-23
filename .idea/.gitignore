@@ -2,7 +2,10 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
+
 /../../../../../../:\Users\Maryem Bessrour\Desktop\Meliora_Symfony\.idea/dataSources/
+
+
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
