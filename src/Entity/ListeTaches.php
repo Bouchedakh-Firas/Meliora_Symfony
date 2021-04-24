@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ListeTaches
@@ -23,7 +24,7 @@ class ListeTaches
 
     /**
      * @var \DateTime
-     *
+     * @Assert\DateTime
      * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
