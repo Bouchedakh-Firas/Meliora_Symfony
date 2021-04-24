@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block body %}
+    <h1>Reclamation</h1>
+    <a href="{{ path('reclamation_new') }}" class="btn btn-dark text-center">
+        <span class="fa fa-plus-circle " aria-hidden="true"></span>
+        Add reclamation</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Sujet</th>
+            <th>Statut</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.sujetreclamation }}</td>
+                <td>{{ reclamation.statu }}</td>
+                <td>{{ reclamation.descriptionreclamation }}</td>
+                <td>{{ reclamation.datereclamation ? reclamation.datereclamation|date('Y-m-d') : '' }}</td>
+                <td>
+                    {% if reclamation.statu=="non traité" %}
+                        <a href="{{ path('reclamation_delete', {'id': reclamation.id}) }}"
+                           class="btn btn-danger text-center">
+                            <span class="fa fa-trash" aria-hidden="true"></span>
+                            Delete</a>
+                        <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}"
+                           class="btn btn-warning text-center">
+                            <span class="fa fa-edit" aria-hidden="true"></span>
+                            edit</a>
+                    {% else %}
+
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

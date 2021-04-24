@@ -3,41 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome to Meliora!{% endblock %}</title>
-    {# Run `composer require symfony/webpack-encore-bundle`
+    {# Run composer require symfony/webpack-encore-bundle
            and uncomment the following Encore helpers to start using Symfony UX #}
-    <style>
-        {% block style %}
-
-        {% endblock %}
-    </style>
     {% block stylesheets %}
     <!-- Favicons -->
-    <link href="{{ asset('img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
+    <link href="img/favicon.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!-- Google Fonts -->
-    <link href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/icofont/icofont.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/remixicon/remixicon.css') }} "rel="stylesheet">
-    <link href="{{ asset('vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/animate.css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/iconfont/iconfont.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/boxicons/css/boxicons.min.css')}}"rel="stylesheet">
+    <link href="{{ asset('vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{ asset('vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('vendor/aos/aos.css')}}" rel="stylesheet">
 
     <!-- Template Main CSS File <--></-->
-<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css')}}" rel="stylesheet">
 
 {#{{ encore_entry_link_tags('app') }}#}
-<script>
-    {% endblock %}
+{% endblock %}
 
-    {% block javascripts %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     {#{{ encore_entry_script_tags('app') }}#}
-    {% endblock %}
-</script>
+{% endblock %}
 </head>
 <body>
 {% block header %}
@@ -46,11 +40,10 @@
 
 
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="index.html" class="logo mr-auto"><img src="{{ asset('img/logoMeliora.png') }}" alt="" class="img-fluid"> Meliora</a>
+            <a href="index.html" class="logo mr-auto"><img src="img/logoMeliora.png" alt="" class="img-fluid"></a>
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="{{ path('afterLogin') }}">Accueil</a></li>
                     <li><a href="">Aliment</a></li>
                     <li><a href="">Planning</a></li>
                     <li class="drop-down"><a href="">Nos contenu</a>
@@ -63,16 +56,14 @@
                         </ul>
                     </li>
 
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="">Events</a></li>
+                    <li><a href="">Pricing</a></li>
 
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="{{ path('reclamation_index') }}">Reclamation</a></li>
+                    <li><a href="">Contact</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
 
-            <a href="{{ path('profil') }}" class="get-started-btn">Edit Profile Informations</a>
-
+            <a href="" class="get-started-btn">Get started</a>
 
         </div>
     </header><!-- End Header -->
@@ -107,7 +98,7 @@
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Acceuil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
@@ -118,8 +109,8 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Our Services</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Video Coaching</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Musique</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
@@ -144,10 +135,11 @@
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
-
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>
     </footer><!-- End Footer -->

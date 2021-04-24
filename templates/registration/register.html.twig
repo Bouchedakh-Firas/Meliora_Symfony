@@ -1,0 +1,118 @@
+<!--
+   Author: Colorlib
+   Author URL: https://colorlib.com
+   License: Creative Commons Attribution 3.0 Unported
+   License URL: http://creativecommons.org/licenses/by/3.0/
+   -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meliora SignUp Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{{ asset('css/signup.css') }}" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="{{ asset('//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i') }}" rel="stylesheet">
+    <!-- //web font -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+    {% block javascripts %}
+
+
+    {% endblock %}
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+</head>
+<body>
+<!-- main -->
+<div class="main-w3layouts wrapper">
+    <h1>Meliora SignUp Form</h1>
+    <div class="main-agileinfo">
+        {{ form_start(form) }}
+
+        <div class="agileits-top">
+            <form>
+                <div class="form-group">
+                    <label class="form-label" for="exampleInputname">Nom</label>
+                    {{ form_widget(form.name , {'attr': {'class': 'form-control' , 'placeholder' : ''}} ) }}
+                    {{ form_errors(form.name) }}
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="exampleInputname">Prénom</label>
+                    {{ form_widget(form.prenom , {'attr': {'class': 'form-control' , 'placeholder' : ''}} ) }}
+                    {{ form_errors(form.prenom) }}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="exampleInputname">Adresse email</label>
+                    {{ form_widget(form.email , {'attr': {'class': 'form-control' , 'placeholder' : ''}} ) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="exampleInputname">Adresse</label>
+                    {{ form_widget(form.adresse , {'attr': {'class': 'form-control' , 'placeholder' : ''}} ) }}
+                    {{ form_errors(form.adresse) }}
+                </div>
+                <div class="form-label">
+                    <label class="form-label" >Tel</label>
+                    {{ form_widget(form.tel , {'attr': {'class': 'js-datepicker', 'placeholder' : ''}} ) }}
+                    {{ form_errors(form.tel) }}
+                </div>
+                <div style="overflow:hidden;">
+                <div class="form-label">
+                    <label class="form-label" >Date de naissance</label>
+                    {{ form_widget(form.dateNai , {'attr': {'class': "js-datepicker", 'placeholder' : ''}} ) }}
+                    {{ form_errors(form.dateNai) }}
+                </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker12').datetimepicker({
+                                inline: true,
+                                sideBySide: true
+                            });
+                        });
+                    </script>
+                </div>
+
+                {{ form(form) }}
+                <div class="form-group mb-0">
+                    <input type="submit" value="Envoyer" class=" btn btn-primary mr-2"/>
+
+                </div>
+            </form>
+
+            <p>Don't have an Account? <a href="{{ asset('login') }}"> Login Now!</a></p>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+    <!-- copyright -->
+    <div class="colorlibcopy-agile">
+        <p>© 2021 Meliora Signup Form. All rights reserved | Design by Maryem Bessrour<a href="https://colorlib.com/" target="_blank"></a></p>
+    </div>
+    <!-- //copyright -->
+    <ul class="colorlib-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<!-- //main -->
+</body>
+</html>
