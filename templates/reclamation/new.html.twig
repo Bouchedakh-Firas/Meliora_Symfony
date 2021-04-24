@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Reclamez-vous!{% endblock %}
+{% block body %}
+        <br><br><br><br><br><br><br>
+<div class="col-lg-8 mt-5 mt-lg-0 " >
+
+    <h2 class="text-center">Ajoutez votre réclamation !</h2><br>
+
+
+            {{ form_start(form, {'attr': {'class': 'form-row'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.sujetreclamation , {'attr': {'class': 'form-control' , 'placeholder' : 'Sujet'}} ) }}
+            {{ form_errors(form.sujetreclamation) }}
+            <div class="validate"></div>
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.descriptionreclamation , {'attr': {'class': 'form-control form-control-user' ,'rows':'5','data-msg':'Please write something for us', 'placeholder' : 'Description'}} ) }}
+            {{ form_errors(form.descriptionreclamation) }}
+            <div class="validate"></div>
+        </div>
+    <div class="form-group">
+        {{ form_widget(form.captcha, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+       <input type="submit" value="Ajouter" class="btn btn-success text-center"/><br><br><br><br><br><br><br><br><br><br>
+
+    {{ form_end(form) }}
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block body %}
+    <h1>Reclamation index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Sujetreclamation</th>
+            <th>Statut</th>
+            <th>Descriptionreclamation</th>
+            <th>Datereclamation</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            {% if reclamation.statu=='archivé'%}
+                {% else %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.sujetreclamation }}</td>
+                <td>{{ reclamation.statu }}</td>
+                <td>{{ reclamation.descriptionreclamation }}</td>
+                <td>{{ reclamation.datereclamation ? reclamation.datereclamation|date('Y-m-d') : '' }}</td>
+                <td>
+                    {% if reclamation.statu == "non traité" %}
+                    <a href="{{ path('traite', {'id': reclamation.id}) }}" class="btn btn-success text-center">
+                        <span class="fa fa-edit" aria-hidden="true"></span>
+                        Traiter</a>
+
+                    {% endif %}
+
+                    {% if reclamation.statu == "Traité" %}
+                        <a href="{{ path('archive', {'id': reclamation.id}) }} " class="btn btn-dark text-center">
+                            <span class="fa fa-archive" aria-hidden="true"></span>
+                            Archivé</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
