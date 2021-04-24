@@ -40,7 +40,7 @@ class Coach2Controller extends AbstractController
             $repo->findAll(),
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
             8/*nbre d'éléments par page*/
-
+                    
         );
 
         return $this->render('coach/affich.html.twig', [
