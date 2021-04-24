@@ -451,9 +451,11 @@
     "symfony/stopwatch": {
         "version": "v4.4.20"
     },
+
     "symfony/string": {
         "version": "v5.2.6"
     },
+
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
         "recipe": {
