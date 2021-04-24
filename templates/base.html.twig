@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome to Meliora!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to Meliora!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
+
            <style>
            {% block style %}
 
@@ -36,9 +37,9 @@
         <script>
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+
         {% endblock %}
+
         </script>
     </head>
     <body>
@@ -53,7 +54,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Accueil</a></li>
+          <li class="active"><a href="{{ path('afterLogin') }}">Accueil</a></li>
           <li><a href="about.html">Aliment</a></li>
            <li class="drop-down"><a href="">Nos contenu</a>
 
@@ -68,23 +69,25 @@
           
           <li><a href="events.html">Events</a></li>
           <li><a href="pricing.html">Pricing</a></li>
-         
+         <li><a href="{{ path('reclamation_index') }}">Reclamation</a></li>
           <li><a href="contact.html">Contact</a></li>
 
-        </ul>
-      </nav><!-- .nav-menu -->
+
+            <a href="{{ path('profil') }}" class="get-started-btn">Edit Profile Informations</a>
 
       <a href="courses.html" class="get-started-btn">Login</a>
       
 
-    </div>
-  </header><!-- End Header -->
-        {% endblock %}
-        <div style="width:100%;height:100px;"></div>
-        <main id="main">	
-		
-		<div class="container" >
+
+        </div>
+    </header><!-- End Header -->
+{% endblock %}
+<div style="width:100%;height:100px;"></div>
+<main id="main">
+
+    <div class="container" >
         {% block body %}
+
         
         
         {% endblock %}
@@ -140,20 +143,75 @@
 #}
           
 
-        </div>
-      </div>
-    </div>
 
-    <div class="container d-md-flex py-4">
 
-      <div class="mr-md-auto text-center text-md-left">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Meliora</span></strong>. All Rights Reserved
+        {% endblock %}
+    </div></main>
+{% block footer %}
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Mentor</h3>
+                        <p>
+                            2089 Rue trapoli <br>
+                            el ghazela,  Ariana<br>
+                            Tunis <br><br>
+                            <strong>Phone:</strong> +216 55 555 555<br>
+                            <strong>Email:</strong> contact@meliora.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Acceuil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Video Coaching</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Musique</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        </ul>
+                    </div>
+
+
+
+                </div>
+            </div>
         </div>
-        <div class="credits">
-         
-          Designed by <a href="#">Meliora</a>
+
+        <div class="container d-md-flex py-4">
+
+            <div class="mr-md-auto text-center text-md-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Meliora</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+
+                    Designed by <a href="#">Meliora</a>
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+
+            </div>
         </div>
+
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
         
@@ -166,4 +224,5 @@
         {% endblock %}
     </body>
    
+
 </html>

@@ -1,0 +1,69 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion User{% endblock %}
+
+{% block body %}
+    <h2>Gestion User</h2><br><br>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Téléphone</th>
+                <th>Est Activé</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+
+                {% for role in user.roles %}
+                {% if role == "ROLE_ADMIN" %}
+                    {% else %}
+
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.adresse }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.dateNai ? user.dateNai|date('Y-m-d') : '' }}</td>
+                <td>{{ user.tel }}</td>
+                <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
+
+                <td> {% if user.isActive==true %}
+                        <a href="{{ path('banne', {'id': user.id}) }}" class="btn btn-dark text-center">
+                            <span class="fas fa-minus-circle" aria-hidden="true"></span>
+                            Banner</a>
+                    {% else %}
+                        <a href="{{ path('Activate', {'id': user.id}) }}" class="btn btn-success text-center">
+                            <span class="fas fa-plus-circle" aria-hidden="true"></span>
+                            Activer</a>
+                    {% endif %}
+
+                    <a href="{{ path('admin_edit', {'id': user.id}) }}" class="btn btn-warning text-center">
+                        <span class="fas fa-edit" aria-hidden="true"></span>
+                        edit</a>
+
+                    <a href="{{ path('admin_delete', {'id': user.id}) }}" class="btn btn-danger text-center">
+                        <span class="fas fa-trash" aria-hidden="true"></span>
+                        delete</a>
+
+
+                </td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

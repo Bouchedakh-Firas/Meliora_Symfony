@@ -5,7 +5,7 @@
         "This file is @generated automatically"
     ],
 
-    "content-hash": "248a7f66a34267c00de1890f389d96e2",
+    "content-hash": "baf2be40786d82008ee566477d1e9999",
 
     "packages": [
         {
@@ -6454,6 +6454,7 @@
             "time": "2021-01-27T09:09:26+00:00"
         },
         {
+
             "name": "symfony/string",
             "version": "v5.2.6",
             "source": {
@@ -6537,6 +6538,7 @@
             "time": "2021-03-17T17:12:15+00:00"
         },
         {
+
             "name": "symfony/swiftmailer-bundle",
             "version": "v3.5.2",
             "source": {

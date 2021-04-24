@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome to Meliora!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to Meliora!{% endblock %}</title>
+    {# Run composer require symfony/webpack-encore-bundle
            and uncomment the following Encore helpers to start using Symfony UX #}
+
         {% block stylesheets %}
   <link href="{{ asset('dash/css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{ asset('dash/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
@@ -27,53 +28,152 @@
     <!-- Main CSS-->
     <link href="{{ asset('dash/css/theme.css')}}" rel="stylesheet" media="all">
 
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+        {#{{ encore_entry_link_tags('app') }}#}
+    {% endblock %}
 
-        {% block javascripts %}
-        <script src="{{ asset('dash/vendor/jquery-3.2.1.min.js') }}"></script>
-    <!-- Bootstrap JS-->
-    <script src="{{ asset('dash/vendor/bootstrap-4.1/popper.min.js') }}"></script>
-    <script src="{{ asset('dash/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
-    <!-- Vendor JS       -->
-    <script src="{{ asset('dash/vendor/slick/slick.min.js') }}">
-    </script>
-    <script src="{{ asset('dash/vendor/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('dash/vendor/animsition/animsition.min.js') }}"></script>
-    <script src="{{ asset('dash/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
-    </script>
-    <script src="{{ asset('dash/vendor/counter-up/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('dash/vendor/counter-up/jquery.counterup.min.js') }}">
-    </script>
-    <script src="{{ asset('dash/vendor/circle-progress/circle-progress.min.js') }}"></script>
-    <script src="{{ asset('dash/vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('dash/vendor/chartjs/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('dash/vendor/select2/select2.min.js') }}">
-    </script>
-    <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.js') }}"></script>
-    <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.sampledata.js') }}"></script>
-    <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.world.js') }}"></script>
 
-    <!-- Main JS-->
-    <script src="{{ asset('dash/js/main.js') }}"></script>
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body >
-    {% block header %}
-   <div class="page-wrapper">
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar">
+    {% block javascripts %}
+        <script src="{{ asset('vendor/jquery-3.2.1.min.js')}}"></script>
+        <!-- Bootstrap JS-->
+        <script src="{{ asset('vendor/bootstrap-4.1/popper.min.js')}}"></script>
+        <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
+        <!-- Vendor JS       -->
+        <script src="{{ asset('dash/vendor/slick/slick.min.js')}}">
+        </script>
+        <script src="{{ asset('dash/vendor/wow/wow.min.js')}}"></script>
+        <script src="{{ asset('dash/vendor/animsition/animsition.min.js')}}"></script>
+        <script src="{{ asset('dash/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
+        </script>
+        <script src="{{ asset('dash/vendor/counter-up/jquery.waypoints.min.js')}}"></script>
+        <script src="{{ asset('dash/vendor/counter-up/jquery.counterup.min.js')}}">
+        </script>
+        <script src="{{ asset('dash/vendor/circle-progress/circle-progress.min.js')}}"></script>
+        <script src="{{ asset('dash/vendor/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+        <script src="{{ asset('dash/vendor/chartjs/Chart.bundle.min.js')}}"></script>
+        <script src="{{ asset('dash/vendor/select2/select2.min.js')}}">
+        </script>
+        <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.js')}}"></script>
+        <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.min.js')}}"></script>
+        <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.sampledata.js')}}"></script>
+        <script src="{{ asset('dash/vendor/vector-map/jquery.vmap.world.js')}}"></script>
+
+        <!-- Main JS-->
+        <script src="{{ asset('js/main.js')}}"></script>
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+<body >
+{% block header %}
+<div class="page-wrapper">
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar2">
+        <div class="logo">
+            <a href="#">
+                <img src="img/logoMeliora.png" alt="Meliora" style="height: 35%; width: 35%; margin-left:50%;" />
+            </a>
+        </div>
+        <div class="menu-sidebar2__content js-scrollbar1">
+            <div class="account2">
+                <div class="image img-cir img-120">
+                    <img src="dash/images/icon/avatar-big-01.jpg" alt="John Doe" />
+                </div>
+                <h4 class="name">john doe</h4>
+                <a href="#">Sign out</a>
+            </div>
+            <nav class="navbar-sidebar2">
+                <ul class="list-unstyled navbar__list">
+                    <li class="active has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-tachometer-alt"></i>Contenu
+                            <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                        </a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-tachometer-alt"></i>Ebook</a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-tachometer-alt"></i>Citation</a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-tachometer-alt"></i>Video</a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-tachometer-alt"></i>Musique</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_index') }}">
+                            <i class="fas fa-chart-bar"></i>Gestion User</a>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-shopping-basket"></i>Statistique</a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="{{ path('reclamation_admin') }}">
+                            <i class="fas fa-trophy"></i>Reclamation
+
+                        </a>
+
+                    </li>
+
+
+            </nav>
+        </div>
+    </aside>
+    <div class="page-container2">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop2">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap2">
+                        <div class="logo d-block d-lg-none">
+                            <a href="#">
+                                <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                            </a>
+                        </div>
+                        <div class="header-button2">
+
+
+
+                            <div class="header-button-item mr-0 js-sidebar-btn">
+                                <i class="zmdi zmdi-menu"></i>
+                            </div>
+                            <div class="setting-menu js-right-sidebar d-none d-lg-block">
+                                <div class="account-dropdown__body">
+                                    <div class="account-dropdown__item">
+                                        <a href="#">
+                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
             <div class="logo">
-                <a href="#" style="color:green;">
-                    <img src="img/logoMeliora.png" alt="Meliora" style="height: 25%; width: 25%; margin-left:10%;" /> Meliora
+                <a href="#">
+                    <img src="images/icon/logo-white.png" alt="Cool Admin" />
+
                 </a>
             </div>
-            <div class="menu-sidebar2__content js-scrollbar1">
+            <div class="menu-sidebar2__content js-scrollbar2">
                 <div class="account2">
                     <div class="image img-cir img-120">
+
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWJ1N84GtEZbQrQzrscJC9fROdbWHNMMsnA&usqp=CAU" alt="John Doe" />
+
                     </div>
                     <h4 class="name">john </h4>
                     <a href="#">Sign out</a>
@@ -82,45 +182,46 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Contenu
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
                                 <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="">
-                                        <i class="fas fa-tachometer-alt"></i>Ebook</a>
+                                    <a href="index.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 1</a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <i class="fas fa-tachometer-alt"></i>Citation</a>
+                                    <a href="index2.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 2</a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <i class="fas fa-tachometer-alt"></i>Video</a>
+                                    <a href="index3.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 3</a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <i class="fas fa-tachometer-alt"></i>Musique</a>
+                                    <a href="index4.html">
+                                        <i class="fas fa-tachometer-alt"></i>Dashboard 4</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="">
-                                <i class="fas fa-chart-bar"></i>Alimentation</a>
-                            
+                            <a href="inbox.html">
+                                <i class="fas fa-chart-bar"></i>Inbox</a>
+                            <span class="inbox-num">3</span>
                         </li>
                         <li>
                             <a href="{{ path ('ListerP')}}">
                                 <i class="fas fa-chart-bar"></i>Planning</a>
                         <li>
                             <a href="#">
-                                <i class="fas fa-shopping-basket"></i>Statistique</a>
+                                <i class="fas fa-shopping-basket"></i>eCommerce</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
+
                                 <i class="fas fa-trophy"></i>Reclamation
                                 
                             </a>
@@ -180,31 +281,35 @@
                    
                 </div>
             </aside>
+
         {% endblock %}
         <br><br><br><br>
-            
-            <div class="CONTAINER">
-        {% block body %}
-        
-        
-        {% endblock %}
-  </div><br><br><br>
+
+        <div class="CONTAINER">
+            {% block body %}
+
+
+            {% endblock %}
+        </div><br><br><br>
         {% block footer %}
         <section>
+
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="copyright">
                                 <p>Copyright © Meliora  .</p>
                             </div>
+
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- END PAGE CONTAINER-->
-        </div>
-
+            </div>
+        </section>
+        <!-- END PAGE CONTAINER-->
     </div>
-        {% endblock %}
-    </body>
+
+</div>
+{% endblock %}
+</body>
 </html>
