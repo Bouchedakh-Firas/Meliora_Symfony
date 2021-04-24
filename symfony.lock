@@ -1,4 +1,7 @@
 {
+    "cmen/google-charts-bundle": {
+        "version": "4.0.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
@@ -87,6 +90,12 @@
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
+    },
+    "gregwar/captcha": {
+        "version": "v1.1.9"
+    },
+    "gregwar/captcha-bundle": {
+        "version": "v2.1.5"
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
