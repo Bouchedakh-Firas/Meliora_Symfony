@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b12770f71ff5a031cbee8a558a104a91",
+
+    "content-hash": "baf2be40786d82008ee566477d1e9999",
+
     "packages": [
         {
             "name": "cmen/google-charts-bundle",
@@ -2461,6 +2463,12 @@
                 "mail",
                 "mailer"
             ],
+
+            "support": {
+                "issues": "https://github.com/swiftmailer/swiftmailer/issues",
+                "source": "https://github.com/swiftmailer/swiftmailer/tree/v6.2.7"
+            },
+
             "funding": [
                 {
                     "url": "https://github.com/fabpot",
@@ -6305,6 +6313,12 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
+
+            "support": {
+                "issues": "https://github.com/symfony/swiftmailer-bundle/issues",
+                "source": "https://github.com/symfony/swiftmailer-bundle/tree/v3.5.2"
+            },
+
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -8001,5 +8015,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

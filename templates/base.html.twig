@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome to Meliora!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to Meliora!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
+
            <style>
            {% block style %}
 
@@ -34,9 +35,9 @@
         <script>
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+
         {% endblock %}
+
         </script>
     </head>
     <body>
@@ -50,7 +51,7 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="">Accueil</a></li>
+           <li class="active"><a href="{{ path('afterLogin') }}">Accueil</a></li>
           <li><a href="">Aliment</a></li>
           <li><a href="{{ path ('ListerPU')}}">Planning</a></li>
            <li class="drop-down"><a href="">Nos contenu</a>
@@ -67,21 +68,25 @@
           <li><a href="pricing.html">Pricing</a></li>
          
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{ path('reclamation_index') }}">Reclamation</a></li>
 
-        </ul>
-      </nav><!-- .nav-menu -->
+
+            <a href="{{ path('profil') }}" class="get-started-btn">Edit Profile Informations</a>
+
 
       <a href="courses.html" class="get-started-btn">Login</a>
       
 
-    </div>
-  </header><!-- End Header -->
-        {% endblock %}
-        <div style="width:100%;height:100px;"></div>
-        <main id="main">	
-		
-		<div class="container" >
+
+        </div>
+    </header><!-- End Header -->
+{% endblock %}
+<div style="width:100%;height:100px;"></div>
+<main id="main">
+
+    <div class="container" >
         {% block body %}
+
         
         
         {% endblock %}
@@ -128,20 +133,35 @@
 
           
 
-        </div>
-      </div>
-    </div>
 
-    <div class="container d-md-flex py-4">
 
-      <div class="mr-md-auto text-center text-md-left">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Meliora</span></strong>. All Rights Reserved
+     
+
+
+
+                </div>
+            </div>
         </div>
-        <div class="credits">
-         
-          Designed by <a href="#">Meliora</a>
+
+        <div class="container d-md-flex py-4">
+
+            <div class="mr-md-auto text-center text-md-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Meliora</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+
+                    Designed by <a href="#">Meliora</a>
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+
+            </div>
         </div>
+
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
         
@@ -153,4 +173,5 @@
   </footer><!-- End Footer -->
         {% endblock %}
     </body>
+
 </html>
