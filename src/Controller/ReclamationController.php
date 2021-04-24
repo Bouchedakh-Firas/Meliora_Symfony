@@ -108,7 +108,7 @@ class ReclamationController extends AbstractController
     /**
      * @Route("/traite/{id}", name="traite", methods={"GET"})
      */
-    public function traiteeclamation(ReclamationRepository $reclamationRepository, $id,\Swift_Mailer $mailer): Response
+    public function traiteeclamation(ReclamationRepository $reclamationRepository, $id, \Swift_Mailer $mailer): Response
     {
         $reclamation = $this->getDoctrine()->getRepository(Reclamation::class)->find($id);
         $reclamation->setStatu('Traité');
@@ -123,7 +123,7 @@ class ReclamationController extends AbstractController
                 $this->renderView(
                 // templates/emails/registration.html.twig
                     'Reclamation/emailsTraite.html.twig',
-                    ['reclamation' => $reclamation ]
+                    ['reclamation' => $reclamation]
                 ),
                 'text/html'
             );

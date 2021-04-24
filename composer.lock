@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
 
+
     "content-hash": "baf2be40786d82008ee566477d1e9999",
 
     "packages": [
@@ -54,6 +55,7 @@
             "autoload": {
                 "psr-4": {
                     "Cocur\\Slugify\\": "src"
+
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -62,6 +64,7 @@
             ],
             "authors": [
                 {
+
                     "name": "Florian Eckerstorfer",
                     "email": "florian@eckerstorfer.co",
                     "homepage": "https://florian.ec"
@@ -81,6 +84,7 @@
                 "source": "https://github.com/cocur/slugify/tree/master"
             },
             "time": "2019-12-14T13:04:14+00:00"
+
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -1575,6 +1579,7 @@
             "time": "2021-01-14T21:52:44+00:00"
         },
         {
+
             "name": "jms/metadata",
             "version": "2.5.0",
             "source": {
@@ -1687,6 +1692,7 @@
             "autoload": {
                 "psr-4": {
                     "Knp\\Component\\": "src/Knp/Component"
+
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1695,6 +1701,7 @@
             ],
             "authors": [
                 {
+
                     "name": "KnpLabs Team",
                     "homepage": "https://knplabs.com"
                 },
@@ -1758,6 +1765,7 @@
             "autoload": {
                 "psr-4": {
                     "Knp\\Bundle\\PaginatorBundle\\": "src"
+
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1766,6 +1774,7 @@
             ],
             "authors": [
                 {
+
                     "name": "KnpLabs Team",
                     "homepage": "http://knplabs.com"
                 },
@@ -1790,6 +1799,7 @@
                 "source": "https://github.com/KnpLabs/KnpPaginatorBundle/tree/v5.4.2"
             },
             "time": "2020-12-17T08:19:16+00:00"
+
         },
         {
             "name": "laminas/laminas-code",

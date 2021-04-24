@@ -12,21 +12,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Custom Theme files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('css/signup.css') }}" rel="stylesheet" type="text/css" media="all" />
+
     <!-- //Custom Theme files -->
     <!-- web font -->
     <link href="{{ asset('//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i') }}" rel="stylesheet">
     <!-- //web font -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 
-    <script>
-        $('.js-datepicker').datepicker({
-            format: 'yyyy-mm',
-            minViewMode: 1,
-            autoclose : true
-        });
+    {% block javascripts %}
 
-    </script>
+
+    {% endblock %}
 
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
@@ -69,10 +67,20 @@
                     {{ form_widget(form.tel , {'attr': {'class': 'js-datepicker', 'placeholder' : ''}} ) }}
                     {{ form_errors(form.tel) }}
                 </div>
+                <div style="overflow:hidden;">
                 <div class="form-label">
                     <label class="form-label" >Date de naissance</label>
-                    {{ form_widget(form.dateNai , {'attr': {'class': 'js-datepicker', 'placeholder' : ''}} ) }}
+                    {{ form_widget(form.dateNai , {'attr': {'class': "js-datepicker", 'placeholder' : ''}} ) }}
                     {{ form_errors(form.dateNai) }}
+                </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker12').datetimepicker({
+                                inline: true,
+                                sideBySide: true
+                            });
+                        });
+                    </script>
                 </div>
 
                 {{ form(form) }}

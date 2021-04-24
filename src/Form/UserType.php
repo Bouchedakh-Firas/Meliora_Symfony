@@ -30,7 +30,11 @@ class UserType extends AbstractType
             ->add('prenom')
             ->add('adresse')
             ->add('tel')
-            ->add('dateNai', DateType::class)
+            ->add('dateNai', DateType::class, [
+                'label'=>'invoice_date',
+                'widget'=>'single_text',
+                'required'=>true,
+            ])
             ->add('roles', ChoiceType::class, array('label' => 'Role ',
                 'choices' => array(' Client' => 'ROLE_CLIENT',
                     'Coach' => 'ROLE_COACH','Admin' => 'ROLE_ADMIN'),
