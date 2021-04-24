@@ -29,7 +29,7 @@ class Coach2Controller extends AbstractController
         ]);
     }
      /**
-     * @Route("/coach2user", name="coach")
+     * @Route("/coach2user", name="coach2user")
      */
     public function Affichage(PaginatorInterface $paginator, Request $request)
     {
@@ -57,6 +57,7 @@ class Coach2Controller extends AbstractController
         return $this->render('Coach/show.html.twig', [
             'coach' => $propri
         ]);
+            
     }
 
 
