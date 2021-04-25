@@ -1,0 +1,14 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New Regime{% endblock %}
+
+{% block body %}
+    <h1>Create new Regime</h1>
+
+    {{ include('regime/_form.html.twig') }}
+    <link rel="stylesheet" href="{{ asset('public/bundles/mercuryseriesflashy/css/flashy.css') }}">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('public/bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    {{ include('regime/Flashy.html.twig') }}
+    <a href="{{ path('regime_index') }}">back to list</a>
+{% endblock %}

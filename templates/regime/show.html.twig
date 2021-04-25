@@ -1,0 +1,28 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Regime{% endblock %}
+
+{% block body %}
+    <h1>Regime</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdRegime</th>
+                <td>{{ regime.idRegime }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ regime.description }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ regime.duration }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('regime_index') }}">back to list</a>
+
+
+{% endblock %}

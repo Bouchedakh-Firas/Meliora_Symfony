@@ -1,0 +1,35 @@
+<h1 align ="center">Aliment</h1>
+<style>
+    th{
+        padding :10px;
+    }
+</style>
+<table class="table" align ="center">
+    <tbody>
+
+    <tr>
+        <th>Libelle</th>
+        <td>{{ aliment.libelle }}</td>
+    </tr>
+    <tr>
+        <th>Recette</th>
+        <td>{{ aliment.recette }}</td>
+    </tr>
+    <tr>
+        <th>Calorie</th>
+        <td>{{ aliment.calorie }}</td>
+    </tr>
+    <tr>
+        <th>Gras</th>
+        <td>{{ aliment.gras }}</td>
+    </tr>
+    <tr>
+        <th>Carbs</th>
+        <td>{{ aliment.carbs }}</td>
+    </tr>
+    <tr>
+        <th>Image</th>
+        <td><img src="../../images/{{ aliment.image }}" ></td>
+    </tr>
+    </tbody>
+</table>
