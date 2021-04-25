@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use App\Services\QrcodeService;
 class Coach2Controller extends AbstractController
 {
     /**
@@ -48,7 +49,7 @@ class Coach2Controller extends AbstractController
         ]);
     }
     /**
-     * @Route("/adminUser/{id}", name="show")
+     * @Route("/User/{id}", name="show")
      */
     public function show($id)
     {
@@ -64,7 +65,7 @@ class Coach2Controller extends AbstractController
     /**
      * @Route("/addcoach",name="add")
      */
-    public function add(Request $request)
+    public function add(Request $request,QrcodeService $qrcodeService)
     {
         $coach = new Coach();
         $form = $this->createForm(CoachType::class, $coach);
@@ -79,13 +80,18 @@ class Coach2Controller extends AbstractController
             $file->move(
                 $this->getParameter('brochures_directory'),
                 $fileName
+               
            );
             $coach->setImage($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($coach);
             $em->flush();
+            $message="Bonjour! je suis  ".$coach->getnom().",
+                 mon adresse est la suivant :".$coach->getEmail()." ,
+                 si besoin de me contacter par telephone:".$coach->getTel().
+                 "";
             $this->addFlash('success', 'le Coach a été bien ajouter   !');
-          
+            $qrCode = $qrcodeService->qrcode($message,$coach->getId());
             return $this->redirectToRoute('Affichage');
             
         }
