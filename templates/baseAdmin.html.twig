@@ -69,10 +69,8 @@
     <!-- Main CSS-->
     <link href="{{ asset('dash/css/theme.css')}}" rel="stylesheet" media="all">
 
-
         {#{{ encore_entry_link_tags('app') }}#}
     {% endblock %}
-
 
 
     {% block javascripts %}
@@ -164,6 +162,11 @@
 
                     </li>
                     <li>
+                        <a href="{{ path('coach2') }}">
+                            <i class="zmdi zmdi-account"></i>Gestion Coach</a>
+
+                    </li>
+                    <li>
                         <a href="#">
                             <i class="fas fa-shopping-basket"></i>Statistique</a>
                     </li>
@@ -174,7 +177,7 @@
                         </a>
 
                     </li>
-
+                </ul>
 
             </nav>
         </div>
@@ -246,21 +249,21 @@
                             <span class="inbox-num">3</span>
                         </li>
                         <li>
-
                             <a href="{{ path ('ListerP')}}">
                                 <i class="fas fa-chart-bar"></i>Planning</a>
                         <li>
-                            <a href="{{ path ('stat')}}">
-                                <i class="fas fa-shopping-basket"></i>Statistique</a>
+                            <a href="#">
+                                <i class="fas fa-shopping-basket"></i>eCommerce</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
+
                                 <i class="fas fa-trophy"></i>Reclamation
                                 
                             </a>
                             
                         </li>
-                        
+                      </ul>  
                       
                 </nav>
             </div>
@@ -308,7 +311,7 @@
                         <div class="image img-cir img-120">
                             <img src="https://cdn.iconscout.com/icon/free/png-256/user-1648810-1401302.png" alt="John " />
                         </div>
-                        <h4 class="name">Firas {{ app.user.name }}</h4>
+                        <h4 class="name">{{ app.user.name }}</h4>
                         <a href="#">Sign out</a>
                     </div>
                    
@@ -323,7 +326,8 @@
 
 
             {% endblock %}
-        </div><br><br><br>
+        </div>
+        <br><br><br>
         {% block footer %}
         <section>
 
@@ -340,7 +344,7 @@
             </div>
         </section>
         <!-- END PAGE CONTAINER-->
-    </div>
+    
 
 </div>
 {% endblock %}

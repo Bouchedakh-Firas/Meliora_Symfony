@@ -21,12 +21,14 @@
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
   <link href="{{ asset('vendor/icofont/icofont.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/remixicon/remixicon.css') }} "rel="stylesheet">
   <link href="{{ asset('vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/animate.css/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/aos/aos.css') }}" rel="stylesheet">
+
 
   <!-- Template Main CSS File <--></-->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -46,6 +48,7 @@
 
       
       <!-- Uncomment below if you prefer to use an image logo -->
+
       <a href="index.html" class="logo mr-auto"><img src="{{ asset('img/logoMeliora.png') }}" alt="" class="img-fluid"> Meliora</a>
 
       <nav class="nav-menu d-none d-lg-block">
@@ -54,6 +57,7 @@
           <li><a href="">Aliment</a></li>
           <li><a href="{{ path ('ListerPU')}}">Planning</a></li>
            <li class="drop-down"><a href="">Nos contenu</a>
+
             <ul>
               
               <li><a href="#">Video de coaching</a></li>
@@ -64,8 +68,8 @@
           </li>
           
           <li><a href="events.html">Events</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-         
+          <li><a href="{{ path('coach2user') }}">Coach</a></li>
+         <li><a href="{{ path('reclamation_index') }}">Reclamation</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="{{ path('reclamation_index') }}">Reclamation</a></li>
 
