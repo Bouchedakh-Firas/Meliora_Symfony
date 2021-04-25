@@ -1,0 +1,47 @@
+{% extends 'baseCoach.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Consulter Planning!{% endblock %}
+
+{% block body %}
+<div>
+{{form(form)}}
+</div>
+
+ 
+   
+   
+   
+    
+    <div class="table-responsive">
+    <a type="button" class="btn btn-success text-white" href="{{ path ('ContentListC', {'id' :id,})}}" >Ajouter une tache</a>
+  <table class="table table-striped table-success border-light">
+    <thead>
+    
+      <tr>
+        <th scope="col">Nom du Tache</th>
+        <th scope="col">type Tache</th>
+        <th scope="col">Date</th>
+        <th scope="col">etat Du Tache</th>
+        <th scope="col">Done</th>
+
+      </tr>
+      
+    </thead>
+    <tbody>
+    {% for e in l %}
+      <tr>
+        <th scope="row">{{ e.nomTache }}</th>
+        <td>{{ e.typeTache }}</td>
+        <td>{{ e.date|date('Y-m-d\\TH:i:sP') }}</td>
+        <td>{{ e.etatDuTache }}</td>
+         <td><a type="button" class="btn btn-success text-white" href="{{ path ('DoneTacheP', {'id' :id,'idt':e.id})}}" >Done</a></td>
+          <td><a type="button" class="btn btn-danger text-white" href="{{ path ('supprimerTachePU', {'id' :id,'idt':e.id})}}">Supprimer</a></td>
+      </tr>
+       {% endfor %}
+      
+    </tbody>
+
+  </table>
+</div>
+{% endblock %}
