@@ -23,21 +23,7 @@
 .botleft { grid-area: botleft; }
 
 .botright { grid-area: botright; }
-.demo {
-		width:100%;
-		height:100%;
-		border:#403F3F;
-		padding:5px;
-	}
-	.demo th {
-		border:1px solid #000000;
-		padding:5px;
-		background:#21BA40;
-	}
-	.demo td {
-		border:1px solid #000000;
-		padding:5px;
-	}
+
 
 {% endblock %}
 
@@ -49,12 +35,12 @@
 {% block body %}
 
 <div class="grid-container2">
-  <div class="topleft" style="border-style: solid;border-bottom:none; overflow: auto;">
+  <div class="topleft" style="border-style: solid;border-bottom:none; overflow: auto; border-color:#c2c0c0;">
   <h3>citation</h3>
-  <table class="demo">
-	<caption>Table 1</caption>
-	<thead>
-	<tr>
+  <table class="table table-striped table-success border-light">
+	
+	<thead class="bg-dark">
+	<tr style="color:white;">
 		<th>Auther</th>
 		<th>Text</th>
 		<th>Genre</th>
@@ -76,12 +62,12 @@
     </tbody>
 </table>
   </div>
-  <div class="topright" style="border-style: solid; border-left:none;border-bottom:none; overflow: auto;">
+  <div class="topright" style="border-style: solid; border-left:none;border-bottom:none; overflow: auto; border-color:#c2c0c0;">
   <h3>video</h3>
-  <table class="demo">
-	<caption>Table video</caption>
-	<thead>
-	<tr>
+  <table class="table table-striped table-success border-light">
+	
+	<thead class="bg-dark">
+	<tr style="color:white;">
 		<th>titre</th>
 		<th>Genre</th>
 		<th>Ajouter</th>
@@ -100,12 +86,12 @@
 </table>
     
   </div>
-  <div class="botleft" style="border-style: solid; overflow: auto;">
+  <div class="botleft" style="border-style: solid; overflow: auto; border-color:#c2c0c0;">
   <h3>Musique</h3>
-  <table class="demo">
+  <table class="table table-striped table-success border-light">
 	
-	<thead>
-	<tr>
+	<thead class="bg-dark">
+	<tr style="color:white;">
 		
 		
 		<th>Genre</th>
@@ -123,12 +109,12 @@
     {% endfor %}</tbody>
 </table>
   </div>
-  <div class="botright" style="border-style: solid; border-left:none;overflow: auto;">
+  <div class="botright" style="border-style: solid; border-left:none;overflow: auto; border-color:#c2c0c0;">
   <h3>Ebook</h3>
-  <table class="demo">
+  <table class="table table-striped table-success border-light">
 	
-	<thead>
-	<tr>
+	<thead class="bg-dark">
+	<tr style="color:white;">
 		<th>Auther</th>
 		
 		<th>Genre</th>

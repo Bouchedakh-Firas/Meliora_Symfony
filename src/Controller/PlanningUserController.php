@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Security\Core\Security;
 use App\Entity\ListeTaches;
 use App\Entity\Planning;
 use App\Entity\Tache;
@@ -17,6 +18,7 @@ use App\Entity\Citations;
 use App\Entity\EBooks;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+
 
 use App\Entity\Musique;
 
@@ -60,19 +62,26 @@ class PlanningUserController extends AbstractController
         $plan = new Planning();
         $form = $this->createForm(PlanningType::class, $plan);
         $repo = $this->getDoctrine()->getRepository(User::class);
+        $date = new \DateTime('now');
+        $plan->setDateCreation($date);
      
-        dump($u);
+        dump($plan);
         
         dump($plan);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $plan = $form->getData();
-            dump($plan);
+            
+            
             
             // $plan->setIdU($us->getId());
             $entityManager = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            $plan->setDateCreation($date);
+            $plan->setIdU($user);
             $entityManager->persist($plan);
             $entityManager->flush();
+            
             $repo1 = $this->getDoctrine()->getRepository(Planning::class);
             $p = $repo1->find($plan);
 
@@ -381,10 +390,20 @@ class PlanningUserController extends AbstractController
     /**
      * @Route("/ListerPlanningU", name="ListerPU")
      */
-    public function ListerP(Request $request)
+    public function ListerP(Request $request,PlanningRepository $repository)
     {
         $repo = $this->getDoctrine()->getRepository(Planning::class);
-        $plannings = $repo->findAll();
+        $user = $this->getUser();
+      
+        $plannings = $repository->createQueryBuilder('a')
+        // Filter by some parameter if you want
+        ->where('a.idU = :nsc ')
+            ->setParameter('nsc', $user->getId())
+            ->getQuery()
+            ->getResult();
+
+        
+        dump($user->getId());
        
         
  
@@ -392,6 +411,51 @@ class PlanningUserController extends AbstractController
             'plans' => $plannings,
             
      ]);
+    }
+
+    /**
+     * @Route("/ListerPlanningUD", name="ListerPUD")
+     */
+    public function ListerPdfault(Request $request,PlanningRepository $repository)
+    {
+        $repo = $this->getDoctrine()->getRepository(Planning::class);
+        $user = $this->getUser();
+       
+        $plannings = $repository->createQueryBuilder('a')
+        // Filter by some parameter if you want
+        ->where('a.idU IS NULL')
+           
+            ->getQuery()
+            ->getResult();
+
+       
+        
+ 
+        return $this->render('planning_user/ListerPdefault.html.twig', [
+            'plans' => $plannings,
+            
+     ]);
+    }
+
+     /**
+     * @Route("/ListerPlanningUDadd{id}", name="ListerPUDadd")
+     */
+    public function ListerPdfaultadd($id,Request $request,PlanningRepository $repository)
+    {
+        $repo = $this->getDoctrine()->getRepository(Planning::class);
+        $user = $this->getUser();
+       
+        $plan = $repository->find($id);
+        $plan->setIdU($user);
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($plan);
+        $em->flush();
+        
+        
+       
+        
+ 
+        return $this->redirectToRoute('ListerPU');
     }
 
     /**

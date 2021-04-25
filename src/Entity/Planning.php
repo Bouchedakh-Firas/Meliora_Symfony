@@ -45,7 +45,7 @@ class Planning
     /**
      * @var \DateTime|null
      * @Groups("students:read")
-     * @Assert\NotBlank
+     * 
      * @ORM\Column(name="date_creation", type="date", nullable=true)
      */
     private $dateCreation;

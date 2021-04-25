@@ -36,14 +36,13 @@
         {% endblock %}
 
 
-        {% endblock %}
 
         </script>
     </head>
     <body>
     {% block header %}
     <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
+    <div class="container d-flex align-items-center" style="margin-left:3%;">
 
       
       <!-- Uncomment below if you prefer to use an image logo -->
@@ -71,10 +70,14 @@
           <li><a href="{{ path('reclamation_index') }}">Reclamation</a></li>
 
 
-            <a href="{{ path('profil') }}" class="get-started-btn">Edit Profile Informations</a>
+            <a href="{{ path('profil') }}" class="get-started-btn" style="margin-left :0;">Edit Profile Informations</a>
 
-
-      <a href="courses.html" class="get-started-btn">Login</a>
+{% if app.user %}
+    <a href="{{path('logout')}}" class="get-started-btn">logout</a>
+ {% else %}
+     <a href="courses.html" class="get-started-btn">Login</a>
+ {% endif %}
+     
       
 
 
@@ -163,12 +166,7 @@
         </div>
 
       </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        
-      </div>
+     
     </div>
   </footer><!-- End Footer -->
         {% endblock %}

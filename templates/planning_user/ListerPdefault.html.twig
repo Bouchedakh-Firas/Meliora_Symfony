@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Lister Planning{% endblock %}
+{% block title %}Lister Planning par default{% endblock %}
 
 {%block javascripts%}
 
@@ -19,11 +19,8 @@
       <th scope="col">Nom Planning</th>
       <th scope="col">Description</th>
       <th scope="col">Date Creation</th>
-      <th scope="col">Likes
-      </th>
-      <th scope="col">Dislike</th>
-      <th scope="col"><a type="button" class="btn btn-success text-white" href="{{ path ('AjouterPlanningUser')}}" >Créer Planning</a></th>
-      <th scope="col"><a type="button" class="btn btn-success text-white" href="{{ path ('AjouterPlanningUser')}}" >Consulter planning par default</a></th>
+      
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody id="all">
@@ -37,10 +34,8 @@
       <span class=""js-likes>{{plan.liker}}</span>
       <span class="js-label">Like</span></a></td>
       <td><a type="button" href="{{ path ('DisikerP', {'id' :plan.id})}}" id="dislike"><i type="button" href="#" class="far fa-thumbs-down"></i>
-      <span class="js-likes">{{plan.disliker}}</span>
-      <span class="js-label">Dislike</span></a></td>
-      <td><a type="button" class="btn btn-success text-white" href="{{ path ('modifierPU', {'id' :plan.id})}} " >Modifier</a></td>
-          <td><a type="button" class="btn btn-danger text-white" href="{{ path ('supprimerPU', {'id' :plan.id})}}"onclick="return confirm('vous ete sure de votre action')">Supprimer</a></td>
+      
+      <td><a type="button" class="btn btn-success text-white" href="{{ path ('ListerPUDadd', {'id' :plan.id})}}" >Ajouter a mes planning</a></td>
     </tr>
 
  {% endfor %}
