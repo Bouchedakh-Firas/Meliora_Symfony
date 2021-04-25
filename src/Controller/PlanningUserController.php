@@ -21,6 +21,7 @@ use Dompdf\Options;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
+
 use App\Entity\Musique;
 
 use App\Entity\Video;
@@ -98,6 +99,7 @@ class PlanningUserController extends AbstractController
             ),
             'text/html'
         );
+        dump($message);
             $mailer->send($message);
         
             return $this->redirectToRoute('ListerPU');
