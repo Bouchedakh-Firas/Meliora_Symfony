@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "2982bc203cf4ddcaa6a33173307fb76f",
+
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -88,10 +90,12 @@
             "autoload": {
                 "psr-4": {
                     "CMEN\\GoogleChartsBundle\\": ""
+
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
+
                 "MIT"
             ],
             "authors": [
@@ -109,6 +113,7 @@
                 "map"
             ],
             "time": "2020-11-15T15:42:46+00:00"
+
         },
         {
             "name": "cocur/slugify",
