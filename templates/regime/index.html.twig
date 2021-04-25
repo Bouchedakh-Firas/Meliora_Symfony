@@ -1,0 +1,122 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Regime index{% endblock %}
+
+{% block body %}
+    <h1>Regime index</h1>
+    <br>
+    <input id="search" type="text" class="form-control" name="query" placeholder="Search now" aria-label="search" aria-describedby="search">
+    <br>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <table class="table">
+        <thead>
+        <tr>
+            <th>IdRegime</th>
+            <th>Description</th>
+            <th>Duration</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody id ="all">
+        {% for regime in regimes %}
+            <tr>
+                <td>{{ regime.idRegime }}</td>
+                <td>{{ regime.description }}</td>
+                <td>{{ regime.duration }}</td>
+
+                <td>
+                    <a href="{{ path('regime_show', {'idRegime': regime.idRegime}) }}"class="btn btn-primary btn-lg " role="button" aria-disabled="true">Show </a>
+                    <a href="{{ path('regime_edit', {'idRegime': regime.idRegime}) }}"class="btn btn-warning btn-lg " role="button" aria-disabled="true">Edit</a>
+
+                    {{ include('regime/_delete_form.html.twig') }}
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+
+        <tbody id ="search"></tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('regime_new') }}">Create new</a>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('searchRegime') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    method : 'GET',
+                    dataType: "JSON",
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    async : true,
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            $.each(JSON.parse(retour), function(i,obj) {
+                              //  console.log(obj.idRegime);
+                                $('#t tbody#all').hide();
+                                $('#t tbody#search').append(
+                                    '<tr>'+
+                                    '<td>'+ obj.idRegime +'</td>' +
+                                    '<td>'+ obj.description +'</td>' +
+                                    '<td>'+ obj.duration +'</td>' +
+
+                                    '</tr>'
+
+
+                                );
+                            });
+
+                        }
+
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/607d4237067c2605c0c3be4d/1f3kklb1m';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
+{% endblock %}
+
+

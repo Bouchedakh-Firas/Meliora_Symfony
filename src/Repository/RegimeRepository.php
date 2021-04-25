@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Regime;
+use App\Form\Regime1Type;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,7 +19,18 @@ class RegimeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Regime::class);
     }
-
+    public function findRegimeparID($description){
+        return $this->createQueryBuilder('regime')
+            ->where('regime.description LIKE :description')
+            ->setParameter('description', '%'.$description.'%')
+            ->getQuery()
+            ->getResult();
+    }
+//    function SearchOffre($libelle){
+//        $query=$this->getEntityManager()->createQuery("select e from Entity\Regime e where e.type LIKE '%$libelle%'");
+//        return $query->getResult();
+//
+//    }
     // /**
     //  * @return Regime[] Returns an array of Regime objects
     //  */

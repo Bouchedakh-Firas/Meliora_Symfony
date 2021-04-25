@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RegimeRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+
 
 /**
  * Regime
@@ -18,6 +22,8 @@ class Regime
      * @ORM\Column(name="id_regime", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("regime:read")
+
      */
     private $idRegime;
 
@@ -25,6 +31,7 @@ class Regime
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+      * @Groups("regime:read")
      */
     private $description;
 
@@ -32,6 +39,7 @@ class Regime
      * @var int
      *
      * @ORM\Column(name="duration", type="integer", nullable=false)
+     * @Groups("regime:read")
      */
     private $duration;
 
@@ -42,6 +50,7 @@ class Regime
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_User", referencedColumnName="id")
      * })
+     * @Groups("regime:read")
      */
     private $idUser;
 
@@ -84,6 +93,9 @@ class Regime
         $this->idUser = $idUser;
 
         return $this;
+    }
+    public function __toString() {
+        return(string)  $this->idRegime;
     }
 
 

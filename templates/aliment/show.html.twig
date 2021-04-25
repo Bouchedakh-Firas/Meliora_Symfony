@@ -1,0 +1,45 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Aliment{% endblock %}
+
+{% block body %}
+    <h1>Aliment</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdAliment</th>
+                <td>{{ aliment.idAliment }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ aliment.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Recette</th>
+                <td>{{ aliment.recette }}</td>
+            </tr>
+            <tr>
+                <th>Calorie</th>
+                <td>{{ aliment.calorie }}</td>
+            </tr>
+            <tr>
+                <th>Gras</th>
+                <td>{{ aliment.gras }}</td>
+            </tr>
+            <tr>
+                <th>Carbs</th>
+                <td>{{ aliment.carbs }}</td>
+            </tr>  <tr>
+                <th>Image</th>
+                <td><img src="../../images/{{ aliment.image }}" ></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('aliment_index') }}"class="btn-dark btn-lg" role="button">back to list</a>
+
+        <a href="{{ path('pdfShow',{'idAliment': aliment.idAliment}) }}" class="btn bg-purple btn-flat"><i clas = "fa fa-file-pdf-o"></i>PDF</a>
+
+
+{% endblock %}

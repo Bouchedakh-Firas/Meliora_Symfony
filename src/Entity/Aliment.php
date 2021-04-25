@@ -55,6 +55,13 @@ class Aliment
      * @ORM\Column(name="carbs", type="float", precision=10, scale=0, nullable=false)
      */
     private $carbs;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
+
 
     /**
      * @var \Regime
@@ -117,6 +124,22 @@ class Aliment
         $this->gras = $gras;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
     }
 
     public function getCarbs(): ?float

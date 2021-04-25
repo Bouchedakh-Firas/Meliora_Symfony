@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Aliment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Scalar\String_;
 
 /**
  * @method Aliment|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,7 +20,73 @@ class AlimentRepository extends ServiceEntityRepository
         parent::__construct($registry, Aliment::class);
     }
 
-    // /**
+    /**
+     * @return Aliment[] Returns an array of Aliment objects
+     */
+
+
+    public function findByLibelle($value)
+    {
+        return $this->createQueryBuilder('aliment')
+            ->andWhere('aliment.libelle like :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    /**
+     * @return Aliment[] Returns an array of Aliment objects
+     */
+
+    public function triBy($value)
+    {
+        return $this->createQueryBuilder('aliment')
+            ->orderBy('aliment.val', 'ASC')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return String[] Returns an array of Aliment objects
+     */
+    public function getLibelle()
+    {
+        return $this->createQueryBuilder('aliment')
+            ->select('aliment.libelle')
+          //  ->orderBy('aliment.libelle')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return float[] Returns an array of Aliment objects
+     */
+
+    public function getCalorie()
+    {
+        return $this->createQueryBuilder('aliment')
+            ->select('aliment.calorie')
+           // ->orderBy('aliment.libelle')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // /**
     //  * @return Aliment[] Returns an array of Aliment objects
     //  */
     /*
