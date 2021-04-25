@@ -19,10 +19,10 @@ class PlanningType extends AbstractType
 
             ])
             ->add('description')
-            ->add('dateCreation')
             
-            ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'Enregistrer'],
+            
+            ->add('Enregistrer', SubmitType::class, [
+                'attr' => ['class' => 'btn-success'],
             ]);
             #->add('idU')
             #->add('idC')

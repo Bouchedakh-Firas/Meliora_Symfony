@@ -7,6 +7,47 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
 
         {% block stylesheets %}
+        <style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
   <link href="{{ asset('dash/css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{ asset('dash/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
     <link href="{{ asset('dash/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
@@ -66,31 +107,32 @@
 {% block header %}
 <div class="page-wrapper">
     <!-- MENU SIDEBAR-->
-    <aside class="menu-sidebar2">
+    <aside class="menu-sidebar" >
         <div class="logo">
-            <a href="#">
-                <img src="img/logoMeliora.png" alt="Meliora" style="height: 35%; width: 35%; margin-left:50%;" />
+             <a href="#" style="color:green;">
+                    <img src="{{asset('img/logoMeliora.png')}}" alt="Meliora" style="height: 25%; width: 25%; margin-left:10%;" /> Meliora
             </a>
         </div>
         <div class="menu-sidebar2__content js-scrollbar1">
             <div class="account2">
                 <div class="image img-cir img-120">
-                    <img src="dash/images/icon/avatar-big-01.jpg" alt="John Doe" />
+                    <img src="{{asset('dash/images/icon/avatar-big-01.jpg')}}" alt="John Doe" />
                 </div>
-                <h4 class="name">john doe</h4>
-                <a href="#">Sign out</a>
+                <h4 class="name">{{ app.user.name }}</h4>
+                <a href="{{path('logout')}}">Sign out</a>
             </div>
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-tachometer-alt"></i>Contenu
-                            <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                        </a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
+                        
+                        
+                        
+                        <ul class="dropdown" >
+                                   <li class="active has-sub">
+                        <a class="btn-light" > <i class="fas fa-tachometer-alt"></i>Content</a>
+                                </li>
+                                 <div class="dropdown-content">
+                            <li> 
                                 <a href="">
                                     <i class="fas fa-tachometer-alt"></i>Ebook</a>
                             </li>
@@ -106,6 +148,12 @@
                                 <a href="">
                                     <i class="fas fa-tachometer-alt"></i>Musique</a>
                             </li>
+                            <li>
+                                <a href="{{path('ListerP')}}">
+                                    <i class="fas fa-tachometer-alt"></i>planning</a>
+                            </li>
+                            </div>
+                           
                         </ul>
                     </li>
                     <li>
@@ -134,15 +182,15 @@
             </nav>
         </div>
     </aside>
-    
+   
         <!-- HEADER DESKTOP-->
-        <header class="header-desktop2">
+        <header class="header-desktop">
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
-                    <div class="header-wrap2">
+                    <div class="header-wrap">
                         <div class="logo d-block d-lg-none">
                             <a href="#">
-                                <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                                <img src="images/icon/logo-white.png" alt="Meliora" />
                             </a>
                         </div>
                         <div class="header-button2">
@@ -169,7 +217,7 @@
         <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo-white.png" alt="Cool Admin" />
+                    <img src="images/icon/logo-white.png" alt="Meliora" />
 
                 </a>
             </div>
@@ -180,8 +228,8 @@
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkWJ1N84GtEZbQrQzrscJC9fROdbWHNMMsnA&usqp=CAU" alt="John Doe" />
 
                     </div>
-                    <h4 class="name">john </h4>
-                    <a href="#">Sign out</a>
+                    <h4 class="name">{{ app.user.name }}</h4>
+                    <a href="{{path('logout')}}">Sign out</a>
                 </div>
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
@@ -192,24 +240,7 @@
                                         <i class="fas fa-angle-down"></i>
                                     </span>
                             </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">
-                                        <i class="fas fa-tachometer-alt"></i>Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">
-                                        <i class="fas fa-tachometer-alt"></i>Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">
-                                        <i class="fas fa-tachometer-alt"></i>Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">
-                                        <i class="fas fa-tachometer-alt"></i>Dashboard 4</a>
-                                </li>
-                            </ul>
+                          
                         </li>
 
                         <li>
@@ -245,7 +276,7 @@
                         <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
                                 <a href="#">
-                                    <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                                    <img src="images/icon/logo-white.png" alt="Meliora" />
                                 </a>
                             </div>
                             <div class="header-button2">
@@ -280,7 +311,7 @@
                         <div class="image img-cir img-120">
                             <img src="https://cdn.iconscout.com/icon/free/png-256/user-1648810-1401302.png" alt="John " />
                         </div>
-                        <h4 class="name">ds </h4>
+                        <h4 class="name">{{ app.user.name }}</h4>
                         <a href="#">Sign out</a>
                     </div>
                    

@@ -23,12 +23,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 class PlanningController extends AbstractController
 {
     /**
-
      * @Route("/yy", name="planning")
      */
     public function index(): Response
@@ -40,6 +40,7 @@ class PlanningController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/plan", name="AjouterPlanning")
      */
     public function AjouterPlan(Request $request) {
@@ -70,6 +71,7 @@ class PlanningController extends AbstractController
      }
      
       /**
+       * @IsGranted("ROLE_ADMIN")
      * @Route("/TacheAjouter", name="AjouterTacheP")
      */
     public function AjouterTache(Request $request) {
@@ -101,6 +103,7 @@ class PlanningController extends AbstractController
 
 
       /**
+       * @IsGranted("ROLE_ADMIN")
      * @Route("/ListerContent/{id}", name="ContentList")
      */
     public function ListerContent(Request $request, $id) {
@@ -128,6 +131,7 @@ class PlanningController extends AbstractController
      }
 
      /**
+      * @IsGranted("ROLE_ADMIN")
      * @Route("/ListerContent/{id}/{idc}/{type}", name="ContentAdd")
      */
     public function ContentAdd(Request $request,  $id,  $idc,  $type) {
@@ -223,6 +227,7 @@ class PlanningController extends AbstractController
      }
 
       /**
+       * @IsGranted("ROLE_ADMIN")
      * @Route("/Planning/{id}", name="PlanningConsulter")
      */
     public function ConsulterP(Request $request, $id) {
@@ -267,6 +272,7 @@ class PlanningController extends AbstractController
      }
 
      /**
+      * @IsGranted("ROLE_ADMIN")
      * @Route("Planning/{id}/supprimer{idt}", name="supprimerTacheP")
      */
     public function supprimerTacheP($id,  $idt, ListeTachesRepository $repository){
@@ -293,6 +299,7 @@ class PlanningController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/Planning/{id}/modifier", name="modifierP")
      */
     public function ModifierP(Request $request, $id) {
@@ -337,6 +344,7 @@ class PlanningController extends AbstractController
      }
 
       /**
+       * @IsGranted("ROLE_ADMIN")
      * @Route("/ListerPlanning", name="ListerP")
      */
     public function ListerP(Request $request) {
@@ -356,6 +364,7 @@ class PlanningController extends AbstractController
      }
 
      /**
+      * 
      * @Route("/searchStudentx ", name="searchStudentx")
      */
     public function searchStudentx(Request $request,NormalizerInterface $Normalizer)
@@ -372,6 +381,7 @@ class PlanningController extends AbstractController
 
 
         /**
+         * @IsGranted("ROLE_ADMIN")
      * @Route("/ListerPlanning/supprimer{id}", name="supprimerP")
      */
     public function SupprimerP(Request $request,$id) {

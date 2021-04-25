@@ -1,0 +1,16 @@
+{%extends 'baseAdmin.html.twig'%}
+{%block javascripts%}
+
+{%endblock%}
+{%block body%}
+
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(piechart, 'div_chart') }}
+        {{ gc_draw([piechart, barchart], ['div_piechart', 'div_barchart']) }}
+        
+    </script>
+     <div id="div_piechart"></div>
+    <div id="div_barchart"></div>
+   
+{%endblock%}
