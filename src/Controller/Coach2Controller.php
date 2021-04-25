@@ -49,7 +49,7 @@ class Coach2Controller extends AbstractController
         ]);
     }
     /**
-     * @Route("/adminUser/{id}", name="show")
+     * @Route("/User/{id}", name="show")
      */
     public function show($id)
     {
