@@ -18,7 +18,7 @@ use App\Services\QrcodeService;
 class Coach2Controller extends AbstractController
 {
     /**
-     * @Route("/coach2admin", name="coach2")
+     * @Route("/cc2admin", name="coach2")
      */
     public function index(): Response
     {
@@ -30,7 +30,7 @@ class Coach2Controller extends AbstractController
         ]);
     }
      /**
-     * @Route("/coach2user", name="coach2user")
+     * @Route("/2usercc", name="2usercc")
      */
     public function Affichage(PaginatorInterface $paginator, Request $request)
     {
@@ -49,7 +49,7 @@ class Coach2Controller extends AbstractController
         ]);
     }
     /**
-     * @Route("/User/{id}", name="show")
+     * @Route("/Usercc/{id}", name="show")
      */
     public function show($id)
     {
@@ -63,9 +63,9 @@ class Coach2Controller extends AbstractController
 
 
     /**
-     * @Route("/addcoach",name="add")
+     * @Route("/addadmin",name="add")
      */
-    public function add(Request $request,QrcodeService $qrcodeService)
+    public function add(Request $request,QrcodeService $qrcodeService,MailerInterface $mailer,UserRepository  $userRepository)
     {
         $coach = new Coach();
         $form = $this->createForm(CoachType::class, $coach);
@@ -91,6 +91,20 @@ class Coach2Controller extends AbstractController
                  si besoin de me contacter par telephone:".$coach->getTel().
                  "";
             $this->addFlash('success', 'le Coach a été bien ajouter   !');
+            $user=$userRepository->findAll();
+            for($i=0; $i<count($user); $i++)
+            {
+             $m="Bonjour  Mr/Mrs ".$user[$i]->getUsername().",
+             un nouveau  coach :'".$coach->getnom()."' est dans notre site, 
+             accedez  pour voir notre nouveau Coach, 
+             Bonne journee
+             ";
+             $email = (new Email())
+                    ->from('meliora.project2021@gmail.com')
+                    ->to($user[$i]->getEmail())
+                    ->text($m);
+                $mailer->send($email);
+            }
             $qrCode = $qrcodeService->qrcode($message,$coach->getId());
             return $this->redirectToRoute('Affichage');
             
@@ -101,7 +115,7 @@ class Coach2Controller extends AbstractController
     }
 
     /**
-     * @Route("/updatecoach/{id}",name="update")
+     * @Route("/updateadminc/{id}",name="update")
      */
     public function update(Request $request, $id, CoachRepository $repo)
     {
@@ -132,7 +146,7 @@ class Coach2Controller extends AbstractController
     }
 
     /**
-     * @Route("/deleteCoach/{id}",name="delete")
+     * @Route("/deleteadminc/{id}",name="delete")
      */
     function delete($id, CoachRepository $repo,MailerInterface $mailer)
     {
@@ -157,7 +171,7 @@ class Coach2Controller extends AbstractController
         return $this->redirectToRoute('Affichage');
     }
     /**
-     * @Route("/searchCoach ", name="searchCoach")
+     * @Route("/searchCc ", name="searchCoach")
      */
     public function searchCoach(Request $request, NormalizerInterface $Normalizer, CoachRepository $repo)
     {
@@ -181,7 +195,7 @@ class Coach2Controller extends AbstractController
         return md5(uniqid());
     }
     /**
-     * @Route("/triCoach", name="tri")
+     * @Route("/triCc", name="tri")
      */
     public function search(Request $request)
     {
@@ -194,6 +208,20 @@ class Coach2Controller extends AbstractController
         ]);
 
     }
-    
+     /**
+     * @Route("/ratingcc ", name="ratingCoach")
+     */
+    public function ratingCoach(Request $request, NormalizerInterface $Normalizer, CoachRepository $repo)
+    {
+
+        $requestString = $request->get('searchValue');
+        $coachs = $repo->fidAll();
+        $jsonContent = $Normalizer->normalize($coachs, 'json', ['groups' => 'coachs:read']);
+        $retour = json_encode($jsonContent);
+        return new Response($retour);
+        /* return $this->render('coach/Affichage.html.twig', [
+            'coach' => $coachs
+        ]);*/
+    }
 }
 
