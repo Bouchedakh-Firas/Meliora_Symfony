@@ -15,6 +15,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Services\QrcodeService;
+
 class Coach2Controller extends AbstractController
 {
     /**
@@ -91,6 +92,7 @@ class Coach2Controller extends AbstractController
                  si besoin de me contacter par telephone:".$coach->getTel().
                  "";
             $this->addFlash('success', 'le Coach a été bien ajouter   !');
+
             $user=$userRepository->findAll();
             for($i=0; $i<count($user); $i++)
             {
@@ -105,6 +107,7 @@ class Coach2Controller extends AbstractController
                     ->text($m);
                 $mailer->send($email);
             }
+
             $qrCode = $qrcodeService->qrcode($message,$coach->getId());
             return $this->redirectToRoute('Affichage');
             
@@ -115,7 +118,9 @@ class Coach2Controller extends AbstractController
     }
 
     /**
+
      * @Route("/updateadminc/{id}",name="update")
+
      */
     public function update(Request $request, $id, CoachRepository $repo)
     {
@@ -215,6 +220,7 @@ class Coach2Controller extends AbstractController
     {
 
         $requestString = $request->get('searchValue');
+
         $coachs = $repo->fidAll();
         $jsonContent = $Normalizer->normalize($coachs, 'json', ['groups' => 'coachs:read']);
         $retour = json_encode($jsonContent);
@@ -223,5 +229,6 @@ class Coach2Controller extends AbstractController
             'coach' => $coachs
         ]);*/
     }
+
 }
 
