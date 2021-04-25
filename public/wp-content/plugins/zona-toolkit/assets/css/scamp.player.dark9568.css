@@ -1,0 +1,320 @@
+/**
+ * Styles for Scamp Player - Dark Skin
+ *
+ * @author Rascals Themes
+ * @category CSS
+ * @package Zona Toolkit
+ * @version 1.0.0
+ */
+
+.sp-track-details { height: 40px; }
+.sp-buttons-container a { 
+    font-size: 22px; 
+    margin-right:0;
+ }
+.sp-buttons-container a.sp-play-button:before, 
+#scamp_player.playing .sp-buttons-container a.sp-play-button:before,
+.sp-buttons-container a.sp-play-button:before,
+#scamp_player.sp-queue-loading .sp-buttons-container a.sp-queue-button:before,
+#scamp_player.loading .sp-buttons-container a.sp-play-button:before,
+.sp-buttons-container a.sp-queue-button:before,
+#scamp_player.sp-show-list .sp-buttons-container a.sp-queue-button:before 
+{ font-size: 22px; }
+.sp-buttons-container a.sp-play-button {
+    width:18px;
+    margin:0 20px
+}
+.sp-volume-container {
+    margin-left: 20px;
+}
+.sp-buttons-container .sp-queue-button-container {
+    margin-right: 0px;
+}
+.sp-badge {
+    top:-14px;
+    left:-10px;
+    font-size:11px;
+}
+.sp-progress {
+    height:8px;
+}
+.sp-progress .sp-loading,
+.sp-progress .sp-position {
+    height: 1px;
+}
+.sp-time-elapsed, .sp-time-total {
+    top: 5px;
+}
+.sp-track-cover .sp-track-artwork, .sp-cover-artwork img {
+    max-width: 36px;
+    max-height: 36px;
+}
+.sp-track-title, .sp-track-artist {
+    padding-left:45px;
+    margin: 0;
+}
+.sp-progress-container:after {
+    content:'';
+    display:block;
+    background-color: #222;
+    position:absolute;
+    left:0;
+    width:100%;
+    height: 1px;
+    top:28px;
+}
+.sp-track-artist, .sp-track-artist:hover {
+    top: 20px;
+}
+.sp-track-title, .sp-track-artist {
+    font-size:11px
+}
+#sp-queue-scroll th {
+    padding: 18px 10px;
+}
+.sp-queue .sp-icon:before {
+    font-size: 18px;
+}
+.sp-title a {
+    display: block;
+    font-size: 12px;
+}
+.sp-title a.sp-title-button {
+    font-weight: bold;
+    font-size: 13px;
+}
+.sp-title a.sp-title-button, .sp-title a.sp-artist-button { 
+    font-weight:normal;
+    text-transform:none
+}
+.sp-progress-mobile .sp-progress {
+    margin-top: 20px;
+}
+.sp-marquee strong { font-weight:normal }
+
+.sp-progress .sp-position:after{
+    content:'';
+    width:8px;
+    background-color:#fff;
+    height:8px;
+    border-radius:100%;
+    position:absolute;
+    top:-3px;
+    right:-5px;
+    transition: opacity 150ms;
+    opacity:0;
+}
+.sp-progress:hover .sp-position:after{
+    opacity:1;
+}
+.sp-queue-container {
+    padding: 16px 10px 6px 10px;
+    border-bottom: 1px solid #222;
+}
+.sp-progress-mobile:before {
+    display:none;
+}
+#sp-queue-scroll td {
+    padding:6px 14px;
+}
+#sp-queue-scroll th {
+    padding: 20px 10px;
+    font-weight: 400;
+}
+.sp-progress-mobile .sp-progress {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.sp-progress-mobile {
+    /* background-color: #FFFFFF; */
+    z-index: 2;
+    margin-top: 0px;
+    overflow: hidden;
+    height: 48px;
+    padding-top: 20px;
+}
+.sp-time-elapsed {
+    left: 0px;
+}
+.sp-time-total {
+    right: 0px;
+}
+.sp-progress-mobile:after {
+    content: '';
+    display: block;
+    background-color: #222;
+    position: absolute;
+    left: 0px;
+    top: 20px;
+    width: 100%;
+    height: 1px;
+    margin-right:10px;
+}
+#scamp_player #sp-toggle:after { 
+    content: "\e052";
+    line-height:36px;
+    font-weight:300;
+    font-size:18px
+}
+#scamp_player.sp-show.playing #sp-toggle:after {
+    content: "";
+    background: transparent url(../images/scamp-player/eq2.svg) center center no-repeat;
+    width: 40px;
+    height: 40px;
+}
+
+#scamp_player.sp-show-player #sp-toggle:after,
+#scamp_player.sp-show-player.playing #sp-toggle:after {
+    background:none;
+    content: "\e117";
+    line-height:40px;
+    font-weight:300;
+    font-size:18px
+}
+
+
+#scamp_player.playing.sp-muted .sp-buttons-container a.sp-play-button:before,
+.sp-buttons-container a.sp-play-button:before
+ {content: "\e052";}
+#scamp_player.playing .sp-buttons-container a.sp-play-button:before {content: "\e053";}
+#scamp_player.loading .sp-buttons-container a.sp-play-button:before { content: "\e620"; }
+.sp-buttons-container a.sp-next-button:before {content: "\e056";}
+.sp-buttons-container a.sp-prev-button:before {content: "\e050";}
+.sp-buttons-container a.sp-volume-button:before { content: "\e098"; }
+.sp-buttons-container a.sp-queue-button:before {content: "\e129"; }
+#scamp_player.sp-show-list .sp-buttons-container a.sp-queue-button:before {content: "\e117";}
+#scamp_player.sp-queue-loading .sp-buttons-container a.sp-queue-button:before { content: "\e620"; }
+.sp-track-control:before {content: "\e052";}
+.sp-track.playing .sp-track-control:before {content: "\e053";}
+.sp-cart-button:before {content: "\e901";}
+.sp-cart-button.sp-download-button:before {content: "\e122"}
+.sp-queue .sp-remove-button:before {content: "\e115";}
+.sp-buttons-container a.sp-volume-button.sp-vol-max:before {content: "\e098";}
+.sp-buttons-container a.sp-volume-button.sp-vol-medium:before {content: "\e098";}
+.sp-buttons-container a.sp-volume-button.sp-vol-off:before {content: "\e099";}
+#scamp_player.sp-show-list .sp-buttons-container a.sp-queue-button:before {color: #fff;}
+#sp-toggle {
+    background-color: rgba(19, 20, 21, 0.89);
+    color: #fff;
+    border-radius 2px;
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    transition: 0.3s color ease;
+    border: 1px solid transparent;
+    position:absolute;
+    right:0;
+    top:-39px;
+    border:1px solid #222;
+    border-bottom:0;
+    border-right:0;
+}
+.sp-show-player #sp-toggle {
+    color: #fff;
+}
+#sp-toggle:hover {
+    color: #fff;
+}
+.sp-show-list .sp-player-container:before {
+    border-bottom: none;
+}
+.sp-main-container {background-color: rgba(19, 20, 21, 0.89);border-top:1px solid #222;}
+.sp-player-container {}
+#scamp_player.sp-show-list .sp-player-container {
+}
+.sp-progress-mobile:before {
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C */
+    border-color: #ddd;
+}
+.sp-buttons-container {color: #fff;}
+.sp-buttons-container a {color: #fff;}
+.sp-buttons-container a:hover { color:#fff; }
+.sp-volume-bar-container, .sp-volume-bar-container:after {background: #131415;border: 1px solid #222;}
+.sp-volume-bar-container:after {
+    border-left:0;
+    border-top:0;
+}
+.sp-volume-slider { background-color: #131415; }
+.sp-volume-position { background-color: #222; }
+.sp-badge { 
+    background-color: #ffffff;
+    color: #1a1b1c; 
+}
+.sp-progress {background-color: transparent;}
+.sp-progress:before, .sp-progress:after { display:none }
+.sp-progress .sp-loading {background-color: #444;}
+.sp-progress .sp-position { background-color: #fff }
+#scamp_player.paused .sp-position { background-color: #fff }
+.sp-time-elapsed { color: #fff; }
+.sp-time-total {color: #fff;}
+.sp-track-title, .sp-track-title:hover {color: #fff;}
+.sp-track-artist, .sp-track-artist:hover {color: #999;}
+.sp-marquee-container {color: #999;}
+.sp-marquee strong {color: #fff;}
+.sp-queue-container {
+    background-color: rgba(19, 20, 21, 0.75);
+}
+.sp-queue .sp-icon:before { color: #999; }
+.sp-track.playing, .sp-track.paused, .sp-track.loading { background-color: rgba(111,111,111,0.2); }
+.sp-track:hover { background-color: rgba(111,111,111,0.1); }
+.sp-track.playing .sp-track-control.sp-icon:before, .sp-track.paused .sp-track-control.sp-icon:before, .sp-track.loading .sp-track-control.sp-icon:before {color: #fff;}
+#sp-queue-scroll tr {border-color: #222;}
+#sp-queue-scroll th { color: #fff;}
+.sp-title a.sp-title-button {color: #fff;}
+.sp-title a.sp-artist-button { color: #999; }
+.sp-queue .sp-icon:hover { 
+    color: #fff;
+}
+.sp-queue .sp-icon:hover:before {color: #fff;}
+#sp-scroller .iScrollIndicator {background-color: #333;}
+#scamp-mobile-init { background-color: #333; }
+
+/* Vol */
+.sp-volume-slider {
+    background-color: transparent;
+    margin-top:14px
+}
+.sp-volume-slider:after {
+    content:'';
+    background-color: #222;
+    position:absolute;
+    width:100%;
+    height:2px;
+}
+.sp-volume-position {
+    height:2px;
+    background-color: #fff;
+}
+.sp-volume-slider:hover .sp-volume-position:after{ 
+    opacity:1;
+}
+.sp-volume-position:after{
+    content:'';
+    width:8px;
+    height:8px;
+    border-radius:100%;
+    background-color: #fff;
+    position:absolute;
+    top:-3px;
+    right:-5px;
+    transition: opacity 150ms;
+    opacity:0;
+}
+.sp-volume-bar-container {
+    top: -54px;
+    height: 30px;
+}
+#sp-empty-queue {
+    text-transform: uppercase;
+    font-size: 10px;
+    padding: 2px 8px;
+    line-height: normal;
+    color: #ccc;
+    cursor: pointer;
+    border: 1px solid #666;
+}

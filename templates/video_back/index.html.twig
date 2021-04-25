@@ -1,0 +1,52 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Video index{% endblock %}
+
+{% block body %}
+    <h1>Video index</h1>
+    <a href="{{ path('video_back_stat')}}" id="btnStat" class="btn-dark btn-lg" role="button">Statistics</a>
+    <td>
+        <a href="{{ path('pdf') }}" class="btn-dark btn-lg" role="button">PDF</a>
+    </td>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idv</th>
+                <th>Titre</th>
+                <th>Genre</th>
+                <th>Videopath</th>
+                <th>Nblikes</th>
+                <th>Nbdislikes</th>
+                <th>Mailsent</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>{{ video.idV }}</td>
+                <td>{{ video.titre }}</td>
+                <td>{{ video.genre }}</td>
+                <td>{{ video.videopath }}</td>
+                <td>{{ video.nbLikes }}</td>
+                <td>{{ video.nbDislikes }}</td>
+                <td>{{ video.mailsent }}</td>
+
+                <td>
+                    <a href="{{ path('video_back_show',  {'idV': video.idV}) }}" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Show </a>
+                    <a href="{{ path('video_back_edit',  {'idV': video.idV}) }}" class="btn btn-warning btn-lg " role="button" aria-disabled="true">Edit</a>
+                    {{ include('video_back/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <a href="{{ path('video_back_new') }}">Create new</a>
+{% endblock %}

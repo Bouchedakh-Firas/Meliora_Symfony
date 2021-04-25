@@ -1,0 +1,14 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Edit Musique{% endblock %}
+
+{% block body %}
+    <div class="w3-container">
+    <h1>Edit Musique</h1>
+
+    {{ include('music/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('music_index') }}" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Retour </a>
+</div>
+
+{% endblock %}
