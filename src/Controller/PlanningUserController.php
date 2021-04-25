@@ -18,6 +18,7 @@ use App\Entity\Citations;
 use App\Entity\EBooks;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 use App\Entity\Musique;
@@ -43,6 +44,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class PlanningUserController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/planning/user", name="planning_user")
      */
     public function index(): Response
@@ -53,6 +55,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/planU", name="AjouterPlanningUser")
      */
     public function AjouterPlan(Request $request, \Swift_Mailer $mailer)
@@ -114,6 +117,7 @@ class PlanningUserController extends AbstractController
 
       
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/TacheAjouterU", name="AjouterTachePUser")
      */
     public function AjouterTache(Request $request)
@@ -142,6 +146,7 @@ class PlanningUserController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ListerContentU/{id}", name="ContentListU")
      */
     public function ListerContent(Request $request, $id)
@@ -166,6 +171,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
     * @Route("/ListerContentU/{id}/{idc}/{type}", name="ContentAddU")
     */
     public function ContentAdd(Request $request, $id, $idc, $type)
@@ -251,6 +257,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/PlanningU/{id}", name="PlanningConsulterU")
      */
     public function ConsulterP(Request $request, $id)
@@ -292,6 +299,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("Planningu/{id}/supprimer{idt}", name="supprimerTachePU")
      */
     public function supprimerTacheP($id, $idt, ListeTachesRepository $repository)
@@ -305,6 +313,7 @@ class PlanningUserController extends AbstractController
     }
 
      /**
+      * @IsGranted("ROLE_USER")
      * @Route("Planningu{id}/afficher", name="afficherPlanning")
      */
     public function AfficherP($id, PlanningRepository $repository,Request $request)
@@ -347,6 +356,7 @@ class PlanningUserController extends AbstractController
     
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/PlanningU/{id}/modifier", name="modifierPU")
      */
     public function ModifierP(Request $request, $id)
@@ -388,6 +398,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ListerPlanningU", name="ListerPU")
      */
     public function ListerP(Request $request,PlanningRepository $repository)
@@ -414,6 +425,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ListerPlanningUD", name="ListerPUD")
      */
     public function ListerPdfault(Request $request,PlanningRepository $repository)
@@ -438,6 +450,7 @@ class PlanningUserController extends AbstractController
     }
 
      /**
+      * @IsGranted("ROLE_USER")
      * @Route("/ListerPlanningUDadd{id}", name="ListerPUDadd")
      */
     public function ListerPdfaultadd($id,Request $request,PlanningRepository $repository)
@@ -483,6 +496,7 @@ class PlanningUserController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ListerPlanningU/supprimer{id}", name="supprimerPU")
      */
     public function SupprimerP(Request $request, $id)
@@ -516,6 +530,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * 
      * @Route("Planning/{id}/liker", name="LikerP")
      */
     public function LikerP($id, PlanningRepository $repository)
@@ -547,6 +562,7 @@ class PlanningUserController extends AbstractController
     }
 
     /**
+     * 
     * @Route("Stat", name="stat")
     */
     public function stat(ListeTachesRepository $repository)

@@ -7,6 +7,47 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
 
         {% block stylesheets %}
+        <style>
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
   <link href="{{ asset('dash/css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{ asset('dash/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
     <link href="{{ asset('dash/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
@@ -68,7 +109,7 @@
 {% block header %}
 <div class="page-wrapper">
     <!-- MENU SIDEBAR-->
-    <aside class="menu-sidebar">
+    <aside class="menu-sidebar" >
         <div class="logo">
              <a href="#" style="color:green;">
                     <img src="{{asset('img/logoMeliora.png')}}" alt="Meliora" style="height: 25%; width: 25%; margin-left:10%;" /> Meliora
@@ -85,14 +126,15 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-tachometer-alt"></i>Contenu
-                            <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                        </a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
+                        
+                        
+                        
+                        <ul class="dropdown" >
+                                   <li class="active has-sub">
+                        <a class="btn-light" > <i class="fas fa-tachometer-alt"></i>Content</a>
+                                </li>
+                                 <div class="dropdown-content">
+                            <li> 
                                 <a href="">
                                     <i class="fas fa-tachometer-alt"></i>Ebook</a>
                             </li>
@@ -108,6 +150,12 @@
                                 <a href="">
                                     <i class="fas fa-tachometer-alt"></i>Musique</a>
                             </li>
+                            <li>
+                                <a href="{{path('ListerP')}}">
+                                    <i class="fas fa-tachometer-alt"></i>planning</a>
+                            </li>
+                            </div>
+                           
                         </ul>
                     </li>
                     <li>
