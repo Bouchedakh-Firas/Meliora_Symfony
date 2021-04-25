@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Video
  *
  * @ORM\Table(name="video")
- * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
+ * @ORM\Entity
  */
 class Video
 {
@@ -43,6 +45,13 @@ class Video
     private $videopath;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="Thumbnail", type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="nb_likes", type="integer", nullable=false)
@@ -63,82 +72,133 @@ class Video
      */
     private $mailsent = '0';
 
+
+    /**
+     * @return int
+     */
     public function getIdV(): ?int
     {
         return $this->idV;
     }
 
+    /**
+     * @param int $idV
+     */
+    public function setIdV(int $idV): void
+    {
+        $this->idV = $idV;
+    }
+
+    /**
+     * @return string
+     */
     public function getTitre(): ?string
     {
         return $this->titre;
     }
 
-    public function setTitre(string $titre): self
+    /**
+     * @param string $titre
+     */
+    public function setTitre(string $titre):void
     {
         $this->titre = $titre;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getGenre(): ?string
     {
         return $this->genre;
     }
 
-    public function setGenre(string $genre): self
+    /**
+     * @param string $genre
+     */
+    public function setGenre(string $genre): void
     {
         $this->genre = $genre;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getVideopath(): ?string
     {
         return $this->videopath;
     }
 
-    public function setVideopath(string $videopath): self
+    /**
+     * @param string $videopath
+     */
+    public function setVideopath(string $videopath): void
     {
         $this->videopath = $videopath;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param string|null $thumbnail
+     */
+    public function setThumbnail(?string $thumbnail): void
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return int
+     */
     public function getNbLikes(): ?int
     {
         return $this->nbLikes;
     }
 
-    public function setNbLikes(int $nbLikes): self
+    /**
+     * @param int $nbLikes
+     */
+    public function setNbLikes(int $nbLikes): void
     {
         $this->nbLikes = $nbLikes;
-
-        return $this;
     }
 
+    /**
+     * @return int
+     */
     public function getNbDislikes(): ?int
     {
         return $this->nbDislikes;
     }
 
-    public function setNbDislikes(int $nbDislikes): self
+    /**
+     * @param int $nbDislikes
+     */
+    public function setNbDislikes(int $nbDislikes): void
     {
         $this->nbDislikes = $nbDislikes;
-
-        return $this;
     }
 
-    public function getMailsent(): ?int
+    /**
+     * @return int
+     */
+    public function getMailsent()
     {
         return $this->mailsent;
     }
 
-    public function setMailsent(int $mailsent): self
+    /**
+     * @param int $mailsent
+     */
+    public function setMailsent($mailsent): void
     {
         $this->mailsent = $mailsent;
-
-        return $this;
     }
-
 
 }

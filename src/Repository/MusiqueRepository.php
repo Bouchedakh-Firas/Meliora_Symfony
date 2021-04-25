@@ -6,6 +6,7 @@ use App\Entity\Musique;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method Musique|null find($id, $lockMode = null, $lockVersion = null)
  * @method Musique|null findOneBy(array $criteria, array $orderBy = null)
@@ -14,6 +15,14 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MusiqueRepository extends ServiceEntityRepository
 {
+
+    public function trouverRegimeparID($titre){
+        return $this->createQueryBuilder('musique')
+            ->where('musique.titre LIKE :titre')
+            ->setParameter('titre', '%'.$titre.'%')
+            ->getQuery()
+            ->getResult();
+    }
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Musique::class);
@@ -47,4 +56,6 @@ class MusiqueRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
 }

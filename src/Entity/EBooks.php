@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * EBooks
  *
  * @ORM\Table(name="e_books", indexes={@ORM\Index(name="id_c", columns={"id_c"})})
- * @ORM\Entity(repositoryClass="App\Repository\EBooksRepository")
+ * @ORM\Entity
  */
 class EBooks
 {
@@ -72,95 +72,6 @@ class EBooks
      * })
      */
     private $idC;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getAuteur(): ?string
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(string $auteur): self
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
-    public function getFavoris(): ?int
-    {
-        return $this->favoris;
-    }
-
-    public function setFavoris(int $favoris): self
-    {
-        $this->favoris = $favoris;
-
-        return $this;
-    }
-
-    public function getTitre(): ?string
-    {
-        return $this->titre;
-    }
-
-    public function setTitre(string $titre): self
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getEvaluation(): ?float
-    {
-        return $this->evaluation;
-    }
-
-    public function setEvaluation(float $evaluation): self
-    {
-        $this->evaluation = $evaluation;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getIdC(): ?Citations
-    {
-        return $this->idC;
-    }
-
-    public function setIdC(?Citations $idC): self
-    {
-        $this->idC = $idC;
-
-        return $this;
-    }
 
 
 }

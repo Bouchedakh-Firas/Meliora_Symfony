@@ -1,0 +1,30 @@
+<h1>Video index</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Idv</th>
+        <th>Titre</th>
+        <th>Genre</th>
+        <th>Videopath</th>
+        <th>Nblikes</th>
+        <th>Nbdislikes</th>
+        <th>Mailsent</th>
+        <th>Like</th>
+        <th>Dislike</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for video in videos %}
+        <tr>
+            <td>{{ video.idV }}</td>
+            <td>{{ video.titre }}</td>
+            <td>{{ video.genre }}</td>
+            <td>{{ video.videopath }}</td>
+            <td>{{ video.nbLikes }}</td>
+            <td>{{ video.nbDislikes }}</td>
+            <td>{{ video.mailsent }}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

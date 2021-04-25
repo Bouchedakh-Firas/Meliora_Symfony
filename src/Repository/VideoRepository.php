@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Video;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Scalar\String_;
 
 /**
  * @method Video|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,37 @@ class VideoRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Video::class);
+    }
+
+    /**
+     * @return int[] returns an array of video likes
+     */
+    public function getLikes(){
+        return $this->createQueryBuilder('video')
+            ->select('video.nbLikes')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    /**
+     * @return int[] returns an array of video likes
+     */
+    public function getDislikes(){
+        return $this->createQueryBuilder('video')
+            ->select('video.nbDislikes')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    /**
+     * @return String[] returns an array of video likes
+     */
+    public function getTitres(){
+        return $this->createQueryBuilder('video')
+            ->select('video.titre')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**

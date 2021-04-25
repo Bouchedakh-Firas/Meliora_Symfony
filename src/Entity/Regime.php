@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Regime
  *
  * @ORM\Table(name="regime", indexes={@ORM\Index(name="id_User", columns={"id_User"})})
- * @ORM\Entity(repositoryClass="App\Repository\RegimeRepository")
+ * @ORM\Entity
  */
 class Regime
 {
@@ -44,47 +44,6 @@ class Regime
      * })
      */
     private $idUser;
-
-    public function getIdRegime(): ?int
-    {
-        return $this->idRegime;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?User
-    {
-        return $this->idUser;
-    }
-
-    public function setIdUser(?User $idUser): self
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
 
 
 }

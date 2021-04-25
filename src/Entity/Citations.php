@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Citations
  *
  * @ORM\Table(name="citations")
- * @ORM\Entity(repositoryClass="App\Repository\CitationsRepository")
+ * @ORM\Entity
  */
 class Citations
 {
@@ -41,47 +41,6 @@ class Citations
      * @ORM\Column(name="genre", type="string", length=255, nullable=false)
      */
     private $genre;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getAuteur(): ?string
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(string $auteur): self
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    public function getText(): ?string
-    {
-        return $this->text;
-    }
-
-    public function setText(string $text): self
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
 
 
 }
