@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * RegimeAliment
  *
- * @ORM\Table(name="regime_aliment", indexes={@ORM\Index(name="fk_aliment", columns={"id_aliment"}), @ORM\Index(name="fk_regime", columns={"id_regime"})})
+ * @ORM\Table(name="regime_aliment", indexes={@ORM\Index(name="fk_idaliment", columns={"id_aliment"}), @ORM\Index(name="fk_idregime", columns={"id_regime"})})
  * @ORM\Entity(repositoryClass="App\Repository\RegimeAlimentRepository")
  */
 class RegimeAliment
@@ -34,6 +34,19 @@ class RegimeAliment
      * @ORM\Column(name="id_regime", type="integer", nullable=false)
      */
     private $idRegime;
+
+    /**
+     * RegimeAliment constructor.
+     * @param int $idAliment
+     * @param int $idRegime
+     */
+
+    public function __construct(int $idAliment, int $idRegime)
+    {
+        $this->idAliment = $idAliment;
+        $this->idRegime = $idRegime;
+    }
+
 
     public function getId(): ?int
     {

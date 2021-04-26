@@ -1,0 +1,61 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Aliment index{% endblock %}
+
+{% block body %}
+    <h1>Aliment index</h1>
+
+    <br>
+    <input id="search" type="text" class="form-control" name="query" placeholder="Search now" aria-label="search" aria-describedby="search">
+    <br>
+
+
+
+    <br>
+    <td>
+
+        <a href="{{ path('aliment_statiii')}}" id="btnStat" class="btn-dark btn-lg" role="button">Statistics</a>
+
+    </td>
+    <br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>IdAliment</th>
+            <th>Libelle</th>
+            <th>Recette</th>
+            <th>Calorie</th>
+            <th>Gras</th>
+            <th>Carbs</th>
+            <th>Image</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody id="all">
+        {% for aliment in aliments %}
+            <tr>
+                <td>{{ aliment.idAliment }}</td>
+                <td>{{ aliment.libelle }}</td>
+                <td>{{ aliment.recette }}</td>
+                <td>{{ aliment.calorie }}</td>
+                <td>{{ aliment.gras }}</td>
+                <td>{{ aliment.carbs }}</td>
+                <td><img src="../../images/{{ aliment.image }}" ></td>
+                <td>
+
+                    {#                <a href="{{ path('alimentfront_showdd', {'idAliment': aliment.idAliment}) }}"class="btn btn-primary btn-lg " role="button" aria-disabled="true">Show </a>#}
+
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        <tbody id="search"></tbody>
+        </tbody>
+
+    </table>
+{% endblock %}

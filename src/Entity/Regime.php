@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Regime
  *
- * @ORM\Table(name="regime", indexes={@ORM\Index(name="id_User", columns={"id_User"})})
+ * @ORM\Table(name="regime")
  * @ORM\Entity(repositoryClass="App\Repository\RegimeRepository")
  */
 class Regime
@@ -36,12 +36,9 @@ class Regime
     private $duration;
 
     /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_User", referencedColumnName="id")
-     * })
+     * @var  int
+     * @ORM\Column(name="id_User", type="integer", nullable=false)
+
      */
     private $idUser;
 
@@ -74,17 +71,16 @@ class Regime
         return $this;
     }
 
-    public function getIdUser(): ?User
+    public function getIdUser(): ?int
     {
         return $this->idUser;
     }
 
-    public function setIdUser(?User $idUser): self
+    public function setIdUser(?int $idUser): self
     {
         $this->idUser = $idUser;
 
         return $this;
     }
-
 
 }

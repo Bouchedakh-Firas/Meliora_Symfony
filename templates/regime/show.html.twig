@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Regime{% endblock %}
+
+{% block body %}
+    <h1>Regime</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>IdRegime</th>
+            <td>{{ regime.idRegime }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ regime.description }}</td>
+        </tr>
+        <tr>
+            <th>Duration</th>
+            <td>{{ regime.duration }}</td>
+        </tr>
+        <tr>
+            <th>Aliments</th>
+        </tr>
+        <tr>
+            {% for aliment in aliments %}
+        <tr>
+
+            <td>{{ aliment.libelle }}</td>
+
+            <td><img src="../../images/{{ aliment.image }}" ></td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('regime_index') }}">back to list</a>
+
+
+{% endblock %}

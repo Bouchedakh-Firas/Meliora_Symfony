@@ -1,0 +1,36 @@
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>Libelle</th>
+            <th>Recette</th>
+            <th>Calorie</th>
+            <th>Gras</th>
+            <th>Carbs</th>
+            <th>Image</th>
+
+        </tr>
+        </thead>
+        <tbody id="all">
+        {% for aliment in aliments %}
+            <tr>
+
+                <td>{{ aliment.libelle }}</td>
+                <td>{{ aliment.recette }}</td>
+                <td>{{ aliment.calorie }}</td>
+                <td>{{ aliment.gras }}</td>
+                <td>{{ aliment.carbs }}</td>
+                <td><img src="../../images/{{ aliment.image }}" ></td>
+
+                <td>
+
+
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

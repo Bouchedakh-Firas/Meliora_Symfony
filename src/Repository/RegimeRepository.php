@@ -18,7 +18,13 @@ class RegimeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Regime::class);
     }
-
+    public function findRegimeparID($description){
+        return $this->createQueryBuilder('regime')
+            ->where('regime.description LIKE :description')
+            ->setParameter('description', '%'.$description.'%')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Regime[] Returns an array of Regime objects
     //  */

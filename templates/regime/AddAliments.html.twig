@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aliment index{% endblock %}
+
+{% block body %}
+    <h1>Aliment index</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>IdAliment</th>
+            <th>Libelle</th>
+            <th>Recette</th>
+            <th>Calorie</th>
+            <th>Gras</th>
+            <th>Carbs</th>
+            <th>Image</th>
+            <th>Add</th>
+        </tr>
+        </thead>
+        <tbody id="all">
+        {% for aliment in aliments %}
+            <tr>
+                <td>{{ aliment.idAliment }}</td>
+                <td>{{ aliment.libelle }}</td>
+                <td>{{ aliment.recette }}</td>
+                <td>{{ aliment.calorie }}</td>
+                <td>{{ aliment.gras }}</td>
+                <td>{{ aliment.carbs }}</td>
+                <td><img src="../../images/{{ aliment.image }}" ></td>
+                <td>
+                    <a href="{{ path('RegAl_Add',{'idRegime': regime.idRegime, 'idAliment': aliment.idAliment}) }}"class="btn btn-primary btn-lg " role="button" aria-disabled="true">Add</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        <tbody id="search"></tbody>
+        </tbody>
+
+    </table>
+
+    <a href="{{ path('regime_index') }}">back to list</a>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aliments statistics{% endblock %}
+
+{% block body %}
+
+    <div style="width: 75%">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script>
+        var lab = ({{ labels|raw }});
+
+
+        //document.write(lab);
+        //var x =echo_trim(lab, '"');
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+
+                labels: lab,//['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: ' Calories ',
+                    data: {{ datas|raw }},
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <a href="{{ path('aliment_index') }}">back to list</a>
+
+
+{% endblock %}

@@ -18,6 +18,21 @@ class RegimeAlimentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, RegimeAliment::class);
     }
+    /**
+     * @return int[] Returns an array of RegimeAliment objects
+     */
+    public function findAlimentbyRegimId($id)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.idAliment')
+            ->andWhere('r.idRegime = :val')
+            ->setParameter('val', $id)
+            ->groupBy('r.idAliment')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
     // /**
     //  * @return RegimeAliment[] Returns an array of RegimeAliment objects

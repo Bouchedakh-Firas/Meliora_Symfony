@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Aliment
  *
- * @ORM\Table(name="aliment", indexes={@ORM\Index(name="id_regime", columns={"id_regime"})})
+ * @ORM\Table(name="aliment")
  * @ORM\Entity(repositoryClass="App\Repository\AlimentRepository")
  */
 class Aliment
@@ -55,16 +55,14 @@ class Aliment
      * @ORM\Column(name="carbs", type="float", precision=10, scale=0, nullable=false)
      */
     private $carbs;
-
     /**
-     * @var \Regime
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Regime")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_regime", referencedColumnName="id_regime")
-     * })
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
      */
-    private $idRegime;
+    private $image;
+
+    
 
     public function getIdAliment(): ?int
     {
@@ -131,17 +129,22 @@ class Aliment
         return $this;
     }
 
-    public function getIdRegime(): ?Regime
+    /**
+     * @return string
+     */
+    public function getImage(): string
     {
-        return $this->idRegime;
+        return $this->image;
     }
 
-    public function setIdRegime(?Regime $idRegime): self
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
     {
-        $this->idRegime = $idRegime;
-
-        return $this;
+        $this->image = $image;
     }
 
+  
 
 }
