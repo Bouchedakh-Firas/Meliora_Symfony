@@ -1,0 +1,283 @@
+<?php
+
+namespace App\Controller;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Entity\EBooks;
+use App\Form\EbookType;
+use App\Repository\CitationsRepository;
+use App\Repository\EBooksRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+class EbookController extends AbstractController
+{
+    /**
+     * @Route("/ebook", name="ebook")
+     */
+    public function index(): Response
+    {
+        return $this->render('ebook/index.html.twig', [
+            'controller_name' => 'EbookController',
+        ]);
+    }
+     /**
+     * @param EBooksRepository $repo
+     * @return Response
+     * @route("/Afficheb",name="Afficheb")
+     */
+    public function Affiche(EBooksRepository $repo)
+    {
+        //$repo = $this ->getDoctrine()->getRepository(Ebooks::class);
+        $ebooks = $repo->findAll();
+        return $this->render('ebook/Affiche.html.twig', [
+            'ebooks' => $ebooks
+        ]);
+    }
+
+    /**
+     *@route("/d{id}",name="d")
+     */
+    public function Delete($id, EBooksRepository $repo)
+    {
+
+        $ebooks = $repo->findOneById($id);
+        $em = $this->getDoctrine()->getManager();
+        if (!$ebooks) {
+            throw $this->createNotFoundException('No livre found for id '.$id);
+        } 
+        $em->remove($ebooks);
+        $em->flush();
+        return $this->redirectToRoute('Afficheb');
+    }
+
+
+    
+    /**
+     * @Route("/searchbookx ", name="searchbookx")
+     *  @param EBooksRepository $repo
+     */
+    public function searchBooksx(Request $request,NormalizerInterface $Normalizer)
+    {
+        /*$repository = $this->getDoctrine()->getRepository(Ebooks::class);
+        $requestString=$request->get('searchValue');
+        $ebooks = $repository->findz($requestString);
+        $jsonContent = $Normalizer->normalize($ebooks, 'json',['groups'=>'ebooks:read']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);*/
+    
+    
+            $repository = $this->getDoctrine()->getRepository(Ebooks::class);
+            $requestString=$request->get('searchValue');
+            //$students = $repository->findBy(array('nomP' => $requestString));
+            $students = $repository->createQueryBuilder('a')
+            // Filter by some parameter if you want
+            ->where('a.auteur LIKE :nsc')
+                ->setParameter('nsc', '%'.$requestString.'%')
+                ->getQuery()
+                ->getResult();
+                $jsonContent = $Normalizer->normalize($students, 'json', ['groups'=>'ebooks:read']);
+                $retour=json_encode($jsonContent);
+                return new Response($retour);
+      
+    }
+    
+
+    /**
+ *  @param Request $request
+ * @return \Symfony\Component\HttpFoundation\Response
+ * @route("/Addb",name="Addb")
+ */
+    function Add(Request $request)
+    { 
+     
+        $ebooks = new EBooks();
+        
+        $form = $this->createForm(EbookType::class,$ebooks);
+        $form->add('Ajouter livre',SubmitType::class);
+        $form->handleRequest($request);
+     
+        if($form->isSubmitted() && $form->isValid() )
+        { $file = $form->get('image')->getData();
+            //$file=$ebooks->getImage();
+            
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            
+
+            try {
+                $file->move(
+                    $this->getParameter('brochures_directory'),  $fileName);
+
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
+            $em=$this->getDoctrine()->getManager();
+            $ebooks->setImage($fileName);
+            $em->persist($ebooks);
+            $em->flush();
+          
+            return $this->redirectToRoute('Afficheb');
+        }
+        return $this->render('ebook/Add.html.twig', 
+    [
+        'form'=>$form->createView()
+    ]);
+    }
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        // md5() reduces the similarity of the file names generated by
+        // uniqid(), which is based on timestamps
+        return md5(uniqid());
+    }
+     /**
+     *@route("/u{id}",name="u")
+     */
+    public function Update($id, EBooksRepository $repo,Request $request)
+    {$ebooks = $repo->find($id);
+        $form = $this->createForm(EbookType::class, $ebooks);
+        $form->add('Modifier livre',SubmitType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid() )
+        {
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($ebooks);
+            $em->flush();
+            return $this->redirectToRoute('Afficheb');
+        }
+        return $this->render('ebook/Update.html.twig', 
+    [
+        'form'=>$form->createView()
+    ]);
+    }
+    /**
+     *@route("/stat1",name="stat1")
+     */
+    public function stat(EBooksRepository $repo)
+    {   
+        $ebooks = $repo->findAll();
+
+        $ebooksname=[];
+        $ebooksfav=[];
+        foreach($ebooks as $e){
+            $ebooksname[] = $e->getTitre();
+            $ebooksfav[] = $e->getFavoris();
+          
+        }
+        return $this->render('ebook/stat.html.twig',[
+            'ebookn' => json_encode($ebooksname),
+            'ebookf' => json_encode($ebooksfav)
+            
+        ]);   
+    }
+    /**
+     *@route("/exe",name="exe")
+     */
+    public function exel(EBooksRepository $repo){
+        $ebooks = $repo->findAll();
+        /*$serializer = new EntitySerializer($em);
+        $ebooksn = $serializer->toArray($ebooks);
+        foreach ($array as $key => $value) {
+            echo 'the key is '.$key.'<br>';
+            echo 'the value is '.$value;
+        }*/
+       
+       
+        $spreadsheet = new Spreadsheet();
+        
+        /* @var $sheet \PhpOffice\PhpSpreadsheet\Writer\Xlsx\Worksheet */
+        $sheet = $spreadsheet->getActiveSheet();
+
+        
+        $sheet->setTitle("La liste des ebooks");
+        $sheet->setCellValue('A1', 'Numero Du livre');
+        $sheet->setCellValue('B1', 'Auteur');
+        $sheet->setCellValue('C1', 'Genre');
+        $sheet->setCellValue('D1', 'Favoris');
+        $sheet->setCellValue('E1', 'Title');
+        $sheet->setCellValue('F1', 'Evaluation');
+        $aux=2;
+        foreach ($ebooks as $row)
+        {
+            
+            $sheet->setCellValue('A'.$aux, $row-> getId());
+        $sheet->setCellValue('B'.$aux, $row->  getAuteur());
+        $sheet->setCellValue('C'.$aux,  $row-> getGenre());
+        $sheet->setCellValue('D'.$aux,  $row-> getFavoris());
+        $sheet->setCellValue('E'.$aux,  $row-> getTitre());
+        $sheet->setCellValue('F'.$aux,  $row-> getEvaluation());
+        $aux++ ;   
+        
+       
+      
+    };
+        // Create your Office 2007 Excel (XLSX Format)
+        $writer = new Xlsx($spreadsheet);
+        
+        // Create a Temporary file in the system
+        $fileName = 'my_first_excel_symfony4.xlsx';
+        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+        
+        // Create the excel file in the tmp directory of the system
+        $writer->save($temp_file);
+        
+        // Return the excel file as an attachment
+        return $this->file($temp_file, $fileName, ResponseHeaderBag::DISPOSITION_INLINE);
+        
+    }
+      /**
+     *@route("/pdf",name="pdf1")
+     */
+    public function topdf(EBooksRepository $repo)
+    { $ebooks = $repo->findAll();
+         // Configure Dompdf according to your needs
+         $pdfOptions = new Options();
+         $pdfOptions->set('defaultFont', 'Arial');
+         
+         // Instantiate Dompdf with our options
+         $dompdf = new Dompdf($pdfOptions);
+         
+         // Retrieve the HTML generated in our twig file
+         $html = $this->renderView('ebook/pdf.html.twig', [
+            
+                'ebooks' => $ebooks
+           
+         ]);
+         
+         // Load HTML to Dompdf
+         $dompdf->loadHtml($html);
+         
+         // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+         $dompdf->setPaper('A4', 'portrait');
+ 
+         // Render the HTML as PDF
+         $dompdf->render();
+ 
+         // Output the generated PDF to Browser (inline view)
+         $dompdf->stream("mypdf.pdf", [
+             "Attachment" => false
+         ]);
+     }
+}

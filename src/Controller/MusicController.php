@@ -111,7 +111,7 @@ class MusicController extends AbstractController
         $musiques = $musiqueRepository->findBy([],[$triString => 'ASC']);
     else
         $musiques = $musiqueRepository->findAll();
-    return $this->render('music/index.html.twig', ['musiques' => $musiques]);
+    return $this->render('music/x.html.twig', ['musiques' => $musiques]);
 }
     /**
      * @Route("/new", name="music_new", methods={"GET","POST"})

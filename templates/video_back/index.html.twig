@@ -34,8 +34,8 @@
                 <td>{{ video.mailsent }}</td>
 
                 <td>
-                    <a href="{{ path('video_back_show',  {'idV': video.idV}) }}" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Show </a>
-                    <a href="{{ path('video_back_edit',  {'idV': video.idV}) }}" class="btn btn-warning btn-lg " role="button" aria-disabled="true">Edit</a>
+                    <p><a width="80" height="80" href="{{ path('video_back_show',  {'idV': video.idV}) }}" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Show </a>
+                     <a width="80" height="80"  href="{{ path('video_back_edit',  {'idV': video.idV}) }}" class="btn btn-warning btn-lg " role="button" aria-disabled="true">Edit</a></p>
                     {{ include('video_back/_delete_form.html.twig') }}
                 </td>
             </tr>

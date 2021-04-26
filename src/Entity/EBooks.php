@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="e_books", indexes={@ORM\Index(name="id_c", columns={"id_c"})})
  * @ORM\Entity(repositoryClass="App\Repository\EBooksRepository")
+
  */
 class EBooks
 {
@@ -18,6 +19,7 @@ class EBooks
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("ebooks:read")
      */
     private $id;
 
@@ -25,6 +27,7 @@ class EBooks
      * @var string
      *
      * @ORM\Column(name="auteur", type="string", length=255, nullable=false)
+     * @Groups("ebooks:read")
      */
     private $auteur;
 
@@ -32,6 +35,7 @@ class EBooks
      * @var string
      *
      * @ORM\Column(name="genre", type="string", length=255, nullable=false)
+     * @Groups("ebooks:read")
      */
     private $genre;
 
@@ -39,6 +43,7 @@ class EBooks
      * @var int
      *
      * @ORM\Column(name="favoris", type="integer", nullable=false)
+     * @Groups("ebooks:read")
      */
     private $favoris;
 
@@ -46,6 +51,7 @@ class EBooks
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255, nullable=false)
+     * @Groups("ebooks:read")
      */
     private $titre;
 
@@ -53,6 +59,7 @@ class EBooks
      * @var float
      *
      * @ORM\Column(name="evaluation", type="float", precision=10, scale=0, nullable=false)
+     * @Groups("ebooks:read")
      */
     private $evaluation;
 
@@ -60,6 +67,7 @@ class EBooks
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * @Groups("ebooks:read")
      */
     private $image;
 

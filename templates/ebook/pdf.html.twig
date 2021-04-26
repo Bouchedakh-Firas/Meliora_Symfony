@@ -1,0 +1,25 @@
+
+
+<table class="table table-hover table-bordered " data-toggle="table" data-search="true" id="t">
+<thead class="thead-dark">
+<tr>
+<th data-sortable="true" data-field="id">Numero Ebook</th>
+<th  data-sortable="true" data-field="auteur">AUTEUR</th>
+<th  data-sortable="true" data-field="genre">GENRE</th>
+<th  data-sortable="true" data-field="text">FAVORIS</th>
+<th  data-sortable="true" data-field="text">TITRE</th>
+<th  data-sortable="true" data-field="text">EVALUATION</th>
+</tr>
+</thead>
+<tbody id="all">
+{% for b in ebooks  %}
+<tr >
+<th>{{b.id}}</th>
+<th>{{b.auteur}}</th>
+<th>{{b.genre}}</th>
+<th>{{b.favoris}}</th>
+<th>{{b.titre}}</th>
+<th>{{b.evaluation}}</th>
+</tr>
+{% endfor %}
+</table>
