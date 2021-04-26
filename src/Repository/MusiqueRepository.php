@@ -14,6 +14,13 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MusiqueRepository extends ServiceEntityRepository
 {
+    public function trouverRegimeparID($titre){
+        return $this->createQueryBuilder('musique')
+            ->where('musique.titre LIKE :titre')
+            ->setParameter('titre', '%'.$titre.'%')
+            ->getQuery()
+            ->getResult();
+    }
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Musique::class);

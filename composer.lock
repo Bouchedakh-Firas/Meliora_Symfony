@@ -4,9 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
     "content-hash": "2982bc203cf4ddcaa6a33173307fb76f",
-
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -90,12 +88,10 @@
             "autoload": {
                 "psr-4": {
                     "CMEN\\GoogleChartsBundle\\": ""
-
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-
                 "MIT"
             ],
             "authors": [
@@ -113,7 +109,6 @@
                 "map"
             ],
             "time": "2020-11-15T15:42:46+00:00"
-
         },
         {
             "name": "cocur/slugify",
@@ -1652,6 +1647,10 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
+            "support": {
+                "issues": "https://github.com/dompdf/dompdf/issues",
+                "source": "https://github.com/dompdf/dompdf/tree/v1.0.2"
+            },
             "time": "2021-01-08T14:18:52+00:00"
         },
         {

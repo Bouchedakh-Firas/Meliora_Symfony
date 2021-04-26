@@ -1,0 +1,27 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Titre</th>
+        <th>Genre</th>
+        <th>Artiste</th>
+        <th>Musicpath</th>
+        <th>Image</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for musique in musiques %}
+        <tr>
+            <td>{{ musique.nombre }}</td>
+            <td>{{ musique.titre }}</td>
+            <td>{{ musique.genre }}</td>
+            <td>{{ musique.artiste }}</td>
+            <td>{{ musique.musicpath }}</td>
+            <td>{{ musique.image }}</td>
+
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
