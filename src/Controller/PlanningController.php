@@ -14,6 +14,7 @@ use App\Form\PlanningType;
 use App\Form\TacheType;
 use App\Repository\ListeTachesRepository;
 use App\Repository\PlanningRepository;
+use Doctrine\ORM\Decorator\EntityManagerDecorator;
 use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,10 +26,141 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class PlanningController extends AbstractController
 {
+     /**
+     * @Route("/ListerMobile", name="ListerMobile")
+     */
+    public function ListerMobile(Request $request,SerializerInterface $serializer,PlanningRepository $repo)
+    {
+       $plan = $repo->findAll();
+       $ser = new Serializer([new ObjectNormalizer()]);
+      $formated =$ser->normalize($plan);
+       $json=$serializer->serialize($plan,'json',['groups'=>'Planning']);
+      
+       //dd($json);
+       
+       
+       return new JsonResponse($formated);
+
+    }
+
+     /**
+    * @Route("/searchplan/{n}", name="searchplan")
+    */
+    public function searchStudentx2(Request $request, NormalizerInterface $Normalizer,SerializerInterface $serializer,$n)
+    {
+        $repository = $this->getDoctrine()->getRepository(Planning::class);
+        
+        //$students = $repository->findBy(array('nomP' => $requestString));
+        $plan = $repository->createQueryBuilder('a')
+        // Filter by some parameter if you want
+        ->where('a.nomP LIKE :nsc')
+            ->setParameter('nsc', '%'.$n.'%')
+            ->getQuery()
+            ->getResult();
+        
+
+            $ser = new Serializer([new ObjectNormalizer()]);
+            $formated =$ser->normalize($plan);
+             $json=$serializer->serialize($plan,'json',['groups'=>'Planning']);
+        //$jsonContent = $Normalizer->normalize($students, 'json', ['groups'=>'students:read']);
+       // $retour=json_encode($jsonContent);
+      //  return new Response($retour);
+      return new JsonResponse($formated);
+    }
+
+
+    /**
+     * @Route("/ListerMobileTache/{id}", name="ListerMobileTa")
+     */
+     public function ListerMobileTache(Request $request,SerializerInterface $serializer,ListeTachesRepository $repo,PlanningRepository $repo1,$id)
+     {
+         $plan = $repo1->find($id);
+      
+       $tache = $repo->findBy(array('idP' => $plan));
+       
+      /*  $tache = $repo->createQueryBuilder('a')
+        // Filter by some parameter if you want
+            ->where('a.idP = :nsc ')
+            ->setParameter('nsc', $id)
+            ->getQuery()
+            ->getResult();*/
+        
+        $ser = new Serializer([new ObjectNormalizer()]);
+       $formated =$ser->normalize($tache);
+        //$json=$serializer->serialize($tache,'json',['groups'=>'tache']);
+       
+        //dd($json);
+        
+        
+        return new JsonResponse($formated);
+ 
+     }
+
+
+    /**
+     * @Route("/planMobile", name="AjouterPlanningMobilejson")
+     */
+    public function AjouterPlanMobilejson(Request $request,SerializerInterface $serializer,EntityManagerDecorator $em)
+    {
+       $content = $request->getContent();
+       $data=$serializer->deserialize($content,Planning::class,'json');
+       $em->persist($data);
+       $em->flush();
+       return new Response('Planning ajouter avec success');
+
+    }
+
+     /**
+     * @Route("/planMobile/{id}", name="SupprimerPlanningMobile")
+     */
+    public function supprimerPlanMobile(Request $request, $id,PlanningRepository $repo )
+    {
+       
+       $p = $repo->findOneBy(array('id' => $id));
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($p);
+        $em->flush();
+       return new Response('Planning mobile supprimer avec success');
+
+    }
+
+     /**
+     * @Route("/planMobile/{id}/{nom}/{desc}", name="modifierPlanningMobile")
+     */
+    public function modifierPlanMobile(Request $request, $id,PlanningRepository $repo,$nom,$desc )
+    {
+       
+       $p = $repo->findOneBy(array('id' => $id));
+       $p->setNomP($nom);
+       $p->setDescription($desc);
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($p);
+        $em->flush();
+       return new Response('Planning mobile modifier avec success');
+
+    }
+
+     /**
+     * @Route("/planMobile/{desc}/{n}", name="AjouterPlanningMobile")
+     */
+    public function AjouterPlanMobile(Request $request, $desc ,$n )
+    {
+       $p = new Planning();
+       $p->setNomP($n);
+       $p->setDescription($desc);
+       $entityManager = $this->getDoctrine()->getManager();
+       $entityManager->persist($p);
+       $entityManager->flush();
+       return new Response('Planning mobile ajouter avec success');
+
+    }
     /**
      * @Route("/yy", name="planning")
      */
